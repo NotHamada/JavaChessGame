@@ -9,14 +9,17 @@ public class Bispo extends Peca {
         return "B";
     }
 
-    public boolean MovimentoValido(String destino, String partida){
-      int linha = partida.charAt(1) - '0';
-      int y = coluna;
+    public boolean MovimentoValido(String partida, String destino){
+      Casa casaPartida = strToCasa(partida);
+      Casa casaDestino = strToCasa(destino);
+      
+      int xPartida = casaPartida.coluna;
+      int yPartida = casaPartida.coluna;
+      
+      int xDestino = casaDestino.coluna;
+      int yDestino = casaDestino.coluna;
 
-      int xDestino;
-      int yDestino;
-
-      int k = abs(xDestino - x);
+      int k = Math.abs(xDestino - xPartida);
       
       return yDestino + k == y || yDestino - k == y;
     }
