@@ -9,8 +9,8 @@ public class Bispo extends Peca {
         return "B";
     }
 
-    public bool MovimentoValido(String destino){
-      int x = linha;
+    public boolean MovimentoValido(String destino, String partida){
+      int linha = partida.charAt(1) - '0';
       int y = coluna;
 
       int xDestino;

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Tabuleiro {
 
@@ -9,8 +8,8 @@ public class Tabuleiro {
     private ArrayList<ArrayList<Peca>> pecas;
 
     public Tabuleiro() {
-        this.pecas = new ArrayList<>(maxLinhas);
-        this.pecas.forEach(p -> p = new ArrayList<>(maxColunas));
+        this.pecas = new ArrayList<ArrayList<Peca>>(maxLinhas);
+        this.pecas.forEach(p -> p = new ArrayList<Peca>(maxColunas));
     }
 
     public void addPeca(Peca peca, int linha, int coluna) {
