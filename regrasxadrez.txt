@@ -1,0 +1,76 @@
+A posição inicial do tabuleiro é:
+
+Todos os movimentos das peças são limitados pelas peças aliadas, ou seja, uma peça não pode "passar por cima" de outra aliada, com exceção do cavalo.
+Os movimentos também são limitados pela peças inimigas, mas nesse caso, uma peça pode se movimentar até uma peça inimiga, (isso é definido como captura abaixo), mas uma peça não pode "passar por cima" de duas ou mais peças. Com exceção do cavalo, que pode passar por cima de qualquer número de peças.
+
+Dizemos que uma peça *ameaça* outra, se em um único movimento, essa peça poderia se movimentar até a posição da peça ameaçada.
+Uma peça pode *capturar* outra quando essa outra peça está ameaçada, nesse caso, a peça capturada sai do tabuleiro e a peça vencedora toma seu lugar.
+Dizemos que o rei está em *xeque* se o rei está ameaçado.
+
+Movimentos:
+  Restrições sob todos os movimentos:
+     -Caso o rei esteja em xeque, só podem ser realizados movimentos que o tirem de xeque.
+     -Não é possível fazer um movimento que coloque o próprio rei em xeque.
+
+  
+  -Peão:
+    O peão pode se movimentar uma posição por movimento na direção vertical e sentido oposto ao do seu lado do tabuleiro. Um peão também pode se movimentar uma casa na diagonal de sentido oposto ao seu lado do tabuleiro caso exista uma peça naquela posição.
+  Exceções:
+    No primeiro movimento de cada peão, ele tem a opção adicional de se movimentar duas casas, ao invés de uma.
+
+  -Rei:
+    O rei pode se movimentar às posições adjacentes, inclusive as diagonais.
+  Execeções:
+    O rei não pode realizar um movimento que o coloque em xeque.
+
+  -Torre:
+    A torre pode se movimentar para todas as posições que estão na mesma linha e coluna.
+  Execeções:
+    Não possui.
+
+  -Torre:
+    O bispo pode se movimentar para todas as posições que estão na mesma diagonal.
+  Execeções:
+    Não possui.
+
+  -Bispo:
+    O bispo pode se movimentar para todas as posições que estão na mesma diagonal.
+  Execeções:
+    Não possui.
+
+  -Dama
+    A rainha pode se movimentar para todas as posições na mesma diagonal, linha, coluna e adjacência.
+
+  -Cavalo
+    Se o cavalo está na posição (i,j), ele pode se movimentar para todas as posições (i±1, j±2) ou (i±2, j±1);
+
+
+
+Movimentos especiais:
+  En passant:
+    Para realizar esse lance, você deve capturar o peão do oponente como se ele tivesse avançado apenas uma casa. Você move seu peão na diagonal para uma casa adjacente, indo para trás do peão do adversário que acabou de avançar duas casas e que é imediatamente removido do tabuleiro.
+    Existem alguns requisitos para que o lance seja legal:
+
+      - O peão de captura deve ter avançado exatamente três fileiras para executar este lance.
+      - O peão capturado deve ter movido duas casas em um lance, aterrissando ao lado do peão que irá capturá-lo.
+      - A captura en passant deve ser realizada no lance imediatamente após o movimento do peão que está prestes a ser capturado. Se o jogador não fizer a captura en passant nesse turno, ele não poderá fazer isso depois.
+
+  Referência: chess.com
+
+  Promoção de peão:
+    Caso um peão chegue à ultima linha do lado oposto ao seu, ele pode escolher transformar-se em qualquer outra peça, com exceção do rei.
+
+  Roque:
+    No roque, o rei move-se duas casas na direção da torre, enquanto a torre move-se no sentido oposto ao movimento do rei, permanecendo ao lado dele.
+  Antes de executar a jogada, é necessário o atendimento aos seguintes requisitos:[1]
+
+    O rei e a torre envolvida não podem ter se movimentado nenhuma vez desde o início do jogo;
+    As casas entre o rei e a torre devem estar desocupadas;
+    O rei não pode estar em xeque, e também não pode ficar em xeque depois do roque;
+    Nenhuma das casas onde o rei passar ou ficar deverá estar no raio de ação de uma peça adversária. Isto não se aplica à torre envolvida.
+    Referência: wikipedia
+    
+
+
+
+
