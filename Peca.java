@@ -6,13 +6,10 @@ public abstract class Peca {
         this.jogador = jogador;
     }
 
-    public abstract boolean MovimentoValido(String destino, String partida);
+    public abstract boolean movimentoValido(Casa destino, Casa partida);
 
-    public Casa strToCasa(String posicao) {
-        int linha = posicao.charAt(1) - '0';
-        int coluna = posicao.charAt(0) - 'a';
-
-        return new Casa(linha, coluna);
+    public boolean posicaoDentroDoTabuleiro(Casa casa) {
+        return 0 <= casa.linha && casa.linha <= 7 && 0 <= casa.coluna && casa.coluna <= 7;
     }
 
     public Cor getJogador() {

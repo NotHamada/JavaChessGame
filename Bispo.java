@@ -9,18 +9,12 @@ public class Bispo extends Peca {
         return "B";
     }
 
-    public boolean MovimentoValido(String partida, String destino){
-      Casa casaPartida = strToCasa(partida);
-      Casa casaDestino = strToCasa(destino);
-      
-      int xPartida = casaPartida.coluna;
-      int yPartida = casaPartida.coluna;
-      
-      int xDestino = casaDestino.coluna;
-      int yDestino = casaDestino.coluna;
+    public boolean movimentoValido(Casa partida, Casa destino) {
+        if (!posicaoDentroDoTabuleiro(destino))
+            return false;
+            
+        int distColuna = Math.abs(partida.coluna - destino.coluna);
 
-      int k = Math.abs(xDestino - xPartida);
-      
-      return yDestino + k == y || yDestino - k == y;
+        return destino.linha + distColuna == partida.linha || destino.linha - distColuna == partida.linha;
     }
 }

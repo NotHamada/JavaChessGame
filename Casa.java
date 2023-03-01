@@ -6,6 +6,4 @@ public class Casa {
         this.linha = linha;
         this.coluna = coluna;
     }
-
-    
 }
