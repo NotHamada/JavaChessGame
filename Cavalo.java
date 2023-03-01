@@ -1,7 +1,11 @@
 public class Cavalo extends Peca {
 
-    public Cavalo(int linha, int coluna, Cor jogador) {
-        super(linha, coluna, jogador);
+    public Cavalo(Cor jogador) {
+        super(jogador);
+    }
+
+    public void mover(String casa) {
+
     }
 
     @Override

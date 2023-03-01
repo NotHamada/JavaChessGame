@@ -1,7 +1,7 @@
 public class Rei extends Peca {
 
-    public Rei(int linha, int coluna, Cor jogador) {
-        super(linha, coluna, jogador);
+    public Rei(Cor jogador) {
+        super(jogador);
     }
 
     @Override

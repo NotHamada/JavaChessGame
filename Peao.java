@@ -1,7 +1,7 @@
 public class Peao extends Peca{
 
-    public Peao(int linha, int coluna, Cor jogador) {
-        super(linha, coluna, jogador);
+    public Peao(Cor jogador) {
+        super(jogador);
     }
 
     @Override

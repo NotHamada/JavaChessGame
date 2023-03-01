@@ -1,7 +1,7 @@
 public class Dama extends Peca {
 
-    public Dama(int linha, int coluna, Cor jogador) {
-        super(linha, coluna, jogador);
+    public Dama(Cor jogador) {
+        super(jogador);
     }
 
     @Override
