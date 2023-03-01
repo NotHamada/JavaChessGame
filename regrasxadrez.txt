@@ -1,5 +1,17 @@
 A posição inicial do tabuleiro é:
 
+8 |T|C|B|D|R|B|C|T|
+7 |P|P|P|P|P|P|P|P|
+6 | | | | | | | | |
+5 | | | | | | | | |
+4 | | | | | | | | |
+3 | | | | | | | | |
+2 |P|P|P|P|P|P|P|P|
+1 |T|C|B|D|R|B|C|T|
+   a b c d e f g h
+
+Onde T é a torre, C é cavalo, B é bispo, D é dama, R e rei e P é peão.
+
 Todos os movimentos das peças são limitados pelas peças aliadas, ou seja, uma peça não pode "passar por cima" de outra aliada, com exceção do cavalo.
 Os movimentos também são limitados pela peças inimigas, mas nesse caso, uma peça pode se movimentar até uma peça inimiga, (isso é definido como captura abaixo), mas uma peça não pode "passar por cima" de duas ou mais peças. Com exceção do cavalo, que pode passar por cima de qualquer número de peças.
 
@@ -60,9 +72,10 @@ Movimentos especiais:
   Promoção de peão:
     Caso um peão chegue à ultima linha do lado oposto ao seu, ele pode escolher transformar-se em qualquer outra peça, com exceção do rei.
 
+
   Roque:
     No roque, o rei move-se duas casas na direção da torre, enquanto a torre move-se no sentido oposto ao movimento do rei, permanecendo ao lado dele.
-  Antes de executar a jogada, é necessário o atendimento aos seguintes requisitos:[1]
+  Antes de executar a jogada, é necessário o atendimento aos seguintes requisitos:
 
     O rei e a torre envolvida não podem ter se movimentado nenhuma vez desde o início do jogo;
     As casas entre o rei e a torre devem estar desocupadas;
