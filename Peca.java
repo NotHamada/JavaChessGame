@@ -1,8 +1,8 @@
 public abstract class Peca {
     
     private String className = this.getClass().getSimpleName();
-
     private Cor jogador;
+    
     
     public Peca(Cor jogador) {
         this.jogador = jogador;

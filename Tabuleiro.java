@@ -30,6 +30,44 @@ public class Tabuleiro {
         return new Casa(linha, coluna);
     }
 
+    private boolean verificaColisao(Casa partida, Casa destino) {
+
+        // Movimento na coluna
+        if (partida.linha == destino.linha) {
+
+            int minColuna = Math.min(partida.coluna, destino.coluna);
+            int maxColuna = Math.max(partida.coluna, destino.coluna);
+
+            for (int i = minColuna + 1; i < maxColuna; i++) {
+                if (pecas[partida.linha][i] != null)
+                    return false;
+            }
+        }
+        // Movimento na linha
+        else if (partida.coluna == destino.coluna) {
+
+            int minLinha = Math.min(partida.linha, destino.linha);
+            int maxLinha = Math.max(partida.linha, destino.linha);
+
+            for (int i = minLinha + 1; i < maxLinha; i++) {
+                if (pecas[i][partida.coluna] != null)
+                    return false;
+            }
+        }
+        // Movimento diagonal
+        else if (Math.abs(partida.linha - destino.linha) == Math.abs(partida.coluna - destino.coluna))
+        {
+            Casa min = new Casa(Math.min(partida.linha, destino.linha), Math.min(partida.coluna, destino.coluna));
+            int diferenca = Math.abs(partida.linha - destino.linha);
+
+            for (int i = 1; i < diferenca; i++) {
+                if (pecas[min.linha + i][min.coluna + i] != null)
+                    return false;
+            }
+        }
+        return true;
+    }
+
     public void moverPeca(String partida, String destino) throws MovementNotAllowedException {
         Casa casaPartida = strToCasa(partida);
         Casa casaDestino = strToCasa(destino);
@@ -40,9 +78,9 @@ public class Tabuleiro {
         if (pecaDestino != null && pecaDestino.getJogador() == pecaAMover.getJogador())
             throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
 
-        if (!pecaAMover.movimentoValido(casaPartida, casaDestino))
+        if (!pecaAMover.movimentoValido(casaPartida, casaDestino) || verificaColisao(casaPartida, casaDestino))
             throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
-
+        
         pecas[casaPartida.linha][casaPartida.coluna] = null;
         pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
     }
