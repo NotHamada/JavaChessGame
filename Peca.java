@@ -1,5 +1,7 @@
 public abstract class Peca {
     
+    private String className = this.getClass().getSimpleName();
+
     private Cor jogador;
     
     public Peca(Cor jogador) {
@@ -17,5 +19,8 @@ public abstract class Peca {
 
     public Cor getJogador() {
         return jogador;
+    }
+    public String getClassName() {
+        return className;
     }
 }

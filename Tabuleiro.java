@@ -24,7 +24,7 @@ public class Tabuleiro {
     }
 
     private Casa strToCasa(String posicao) {
-        int linha = posicao.charAt(1) - '0';
+        int linha = posicao.charAt(1) - '1';
         int coluna = posicao.charAt(0) - 'a';
 
         return new Casa(linha, coluna);
@@ -38,12 +38,13 @@ public class Tabuleiro {
         Peca pecaDestino = pecas[casaDestino.linha][casaDestino.coluna];
 
         if (pecaDestino != null && pecaDestino.getJogador() == pecaAMover.getJogador())
-            throw new MovementNotAllowedException();
+            throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
 
         if (!pecaAMover.movimentoValido(casaPartida, casaDestino))
-            throw new MovementNotAllowedException();
+            throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
 
-        pecas[casaPartida.linha][casaPartida.coluna] = pecaAMover;
+        pecas[casaPartida.linha][casaPartida.coluna] = null;
+        pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
     }
 
     public void inicializaPosicao() {

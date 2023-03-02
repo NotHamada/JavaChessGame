@@ -5,8 +5,8 @@ public class MovementNotAllowedException extends Exception {
         super("Movimento invalido");
     }
 
-    public MovementNotAllowedException(String message) {
-        super(message);
+    public MovementNotAllowedException(String className, String partida, String destino) {
+        super("Mover " + className + " de " + partida + " para " + destino + " e invalido");
     }
     
 }
