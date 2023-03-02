@@ -68,6 +68,12 @@ public class Tabuleiro {
         return true;
     }
 
+    private boolean validaMovimento(Peca pecaDestino, Peca pecaAMover, Casa partida, Casa destino) {
+        return (pecaDestino != null && pecaDestino.getJogador() != pecaAMover.getJogador())
+                && pecaAMover.movimentoValido(partida, destino)
+                && !verificaColisao(partida, destino);
+    }
+
     public void moverPeca(String partida, String destino) throws MovementNotAllowedException {
         Casa casaPartida = strToCasa(partida);
         Casa casaDestino = strToCasa(destino);
@@ -75,10 +81,7 @@ public class Tabuleiro {
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
         Peca pecaDestino = pecas[casaDestino.linha][casaDestino.coluna];
 
-        if (pecaDestino != null && pecaDestino.getJogador() == pecaAMover.getJogador())
-            throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
-
-        if (!pecaAMover.movimentoValido(casaPartida, casaDestino) || verificaColisao(casaPartida, casaDestino))
+        if (!validaMovimento(pecaDestino, pecaAMover, casaPartida, casaDestino))
             throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
         
         pecas[casaPartida.linha][casaPartida.coluna] = null;
