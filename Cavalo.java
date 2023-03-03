@@ -1,7 +1,7 @@
 public class Cavalo extends Peca {
 
-    public Cavalo(Cor jogador) {
-        super(jogador);
+    public Cavalo(Cor jogador, Tabuleiro tabuleiro) {
+        super(jogador, tabuleiro, true);
     }
 
     public boolean movimentoValido(Casa destino, Casa partida) {

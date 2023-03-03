@@ -1,7 +1,7 @@
 public class Bispo extends Peca {
 
-    public Bispo(Cor jogador) {
-        super(jogador);
+    public Bispo(Cor jogador, Tabuleiro tabuleiro) {
+        super(jogador, tabuleiro, false);
     }
 
     @Override
