@@ -28,7 +28,7 @@ public abstract class Peca {
             int maxColuna = Math.max(partida.coluna, destino.coluna);
 
             for (int i = minColuna + 1; i < maxColuna; i++) {
-                if (tabuleiro.getPecas()[partida.linha][i] != null)
+                if (tabuleiro.getPecas(partida.linha, i) != null)
                     return false;
             }
         }
@@ -39,7 +39,7 @@ public abstract class Peca {
             int maxLinha = Math.max(partida.linha, destino.linha);
 
             for (int i = minLinha + 1; i < maxLinha; i++) {
-                if (tabuleiro.getPecas()[i][partida.coluna] != null)
+                if (tabuleiro.getPecas(i, partida.coluna) != null)
                     return false;
             }
         }
@@ -68,19 +68,19 @@ public abstract class Peca {
 
 
     private boolean verificaCasaOcupada(Casa casaPartida, Casa casaDestino) {
-        Peca pecaAMover = tabuleiro.getPecas()[casaPartida.linha][casaPartida.coluna];
-        Peca pecaDestino = tabuleiro.getPecas()[casaDestino.linha][casaDestino.coluna];
+        Peca pecaAMover = tabuleiro.getPecas(casaPartida.linha, casaPartida.coluna);
+        Peca pecaDestino = tabuleiro.getPecas(casaDestino.linha, casaDestino.coluna);
 
         return (pecaDestino == null || pecaDestino.getJogador() != pecaAMover.getJogador());
     }
     
 
     public boolean validaMovimento(Casa partida, Casa destino) {
-        Peca pecaAMover = tabuleiro.getPecas()[partida.linha][partida.coluna];
+        Peca pecaAMover = tabuleiro.getPecas(partida.linha, partida.coluna);
      
-        System.out.println(pecaAMover.movimentoValido(partida, destino));
-        System.out.println(verificaCasaOcupada(partida, destino));
-        System.out.println(verificaColisao(partida, destino));
+        // System.out.println(pecaAMover.movimentoValido(partida, destino));
+        // System.out.println(verificaCasaOcupada(partida, destino));
+        // System.out.println(verificaColisao(partida, destino));
 
         return pecaAMover.movimentoValido(partida, destino)
                 && verificaCasaOcupada(partida, destino)
@@ -89,14 +89,14 @@ public abstract class Peca {
 
 
     public boolean dentroDoTabuleiro(Casa casa) {
-        return 0 <= casa.linha && casa.linha <= Tabuleiro.maxLinhas
-                && 0 <= casa.coluna && casa.coluna <= Tabuleiro.maxColunas;
+        return 0 <= casa.linha && casa.linha < Tabuleiro.maxLinhas
+                && 0 <= casa.coluna && casa.coluna < Tabuleiro.maxColunas;
     }
 
 
     public boolean dentroDoTabuleiro(int linha, int coluna) {
-        return 0 <= linha && linha <= Tabuleiro.maxLinhas
-                && 0 <= coluna && coluna <= Tabuleiro.maxColunas;
+        return 0 <= linha && linha < Tabuleiro.maxLinhas
+                && 0 <= coluna && coluna < Tabuleiro.maxColunas;
     }
 
 
