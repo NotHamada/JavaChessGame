@@ -9,7 +9,6 @@ public class Tabuleiro {
         pecas = new Peca[maxLinhas][maxColunas];
     }
 
-    
     private void addPeca(Peca peca, int linha, int coluna) {
 
         if (linha < 0 || maxLinhas < linha || coluna < 0 || maxColunas < coluna) {
@@ -24,7 +23,6 @@ public class Tabuleiro {
         pecas[linha][coluna] = peca;
     }
 
-
     private Casa strToCasa(String posicao) {
         int linha = posicao.charAt(1) - '1';
         int coluna = posicao.charAt(0) - 'a';
@@ -32,20 +30,17 @@ public class Tabuleiro {
         return new Casa(linha, coluna);
     }
 
-
     public void moverPeca(String partida, String destino) throws MovementNotAllowedException {
         Casa casaPartida = strToCasa(partida);
         Casa casaDestino = strToCasa(destino);
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
-
         if (pecaAMover == null || !pecaAMover.validaMovimento(casaPartida, casaDestino))
             throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
-        
+
         pecas[casaPartida.linha][casaPartida.coluna] = null;
         pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
     }
-
 
     public void inicializaPosicao() {
         for (int i = 0; i < maxLinhas; i++) {
@@ -96,7 +91,7 @@ public class Tabuleiro {
         String output = "";
         for (int i = maxLinhas - 1; i >= 0; i--) {
 
-            output += String.valueOf((char)('1' + i));
+            output += String.valueOf((char) ('1' + i));
 
             for (int j = 0; j < maxColunas; j++) {
                 if (pecas[i][j] == null)
@@ -110,13 +105,12 @@ public class Tabuleiro {
         return output;
     }
 
-
     public Peca[][] getPecas() {
         return pecas;
     }
-    public Peca getPecas(int linha, int coluna) {
+
+    public Peca getPeca(int linha, int coluna) {
         return pecas[linha][coluna];
     }
 
-    
 }

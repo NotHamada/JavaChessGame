@@ -8,14 +8,13 @@ public class Cavalo extends Peca {
         if (!dentroDoTabuleiro(destino))
             return false;
 
-        int dx[] = {1, -1, 1, -1, 2, -2, 2, -2};
-        int dy[] = {2, 2, -2, -2, 1, 1, -1, -1};
+        int dx[] = { 1, -1, 1, -1, 2, -2, 2, -2 };
+        int dy[] = { 2, 2, -2, -2, 1, 1, -1, -1 };
 
         for (int i = 0; i < 8; i++) {
             if (dentroDoTabuleiro(partida.linha + dy[i], partida.coluna + dx[i])
-                && partida.linha + dy[i] == destino.linha
-                && partida.coluna + dx[i] == destino.coluna
-            )
+                    && partida.linha + dy[i] == destino.linha
+                    && partida.coluna + dx[i] == destino.coluna)
                 return true;
         }
         return false;

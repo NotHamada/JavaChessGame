@@ -5,7 +5,10 @@ public class Dama extends Peca {
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {
-        return true;
+        Torre torre = new Torre(this.getJogador(), this.getTabuleiro());
+        Bispo bispo = new Bispo(this.getJogador(), this.getTabuleiro());
+
+        return torre.movimentoValido(partida, destino) || bispo.movimentoValido(partida, destino);
     }
 
     @Override

@@ -5,7 +5,10 @@ public class Torre extends Peca {
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {
-        return true;
+        if (!dentroDoTabuleiro(destino))
+            return false;
+
+        return partida.coluna == destino.coluna || partida.linha == destino.linha;
     }
 
     @Override

@@ -5,7 +5,13 @@ public class Rei extends Peca {
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {
-        return true;
+        if (!dentroDoTabuleiro(destino))
+            return false;
+
+        return (Math.abs(partida.linha - destino.linha) == 1
+                || Math.abs(partida.linha - destino.linha) == 0)
+                    && (Math.abs(partida.coluna - destino.coluna) == 1
+                    || Math.abs(partida.coluna - destino.coluna) == 0);
     }
 
     @Override
