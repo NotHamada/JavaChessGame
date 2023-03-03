@@ -1,8 +1,8 @@
 public abstract class Peca {
 
-    private String className = this.getClass().getSimpleName();
     private Cor jogador;
     private boolean ignoraColisao;
+    private String className = this.getClass().getSimpleName();
 
     private Tabuleiro tabuleiro;
 
