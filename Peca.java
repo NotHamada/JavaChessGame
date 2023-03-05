@@ -1,10 +1,14 @@
 public abstract class Peca {
 
+    protected boolean ignoraColisao;
+
     private Cor jogador;
-    private boolean ignoraColisao;
     private String className = this.getClass().getSimpleName();
 
-    private Tabuleiro tabuleiro;
+
+    public Tabuleiro tabuleiro;
+
+    public int numMovimentos=0;
 
     public Peca(Cor jogador, Tabuleiro tabuleiro, boolean ignoraColisao) {
         this.jogador = jogador;

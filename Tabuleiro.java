@@ -23,7 +23,7 @@ public class Tabuleiro {
         pecas[linha][coluna] = peca;
     }
 
-    private Casa strToCasa(String posicao) {
+    public Casa strToCasa(String posicao) {
         int linha = posicao.charAt(1) - '1';
         int coluna = posicao.charAt(0) - 'a';
 
@@ -39,6 +39,8 @@ public class Tabuleiro {
             throw new MovementNotAllowedException(pecaAMover != null ? pecaAMover.getClassName() : "casa vazia",
                                                   partida, destino);
         }
+
+        pecas[casaPartida.linha][casaPartida.coluna].numMovimentos++;
 
         pecas[casaPartida.linha][casaPartida.coluna] = null;
         pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
@@ -107,12 +109,25 @@ public class Tabuleiro {
         return output;
     }
 
+    public boolean estaAmeacado(String str){
+      Casa casa = strToCasa(str);
+      return false;
+    }
+
     public Peca[][] getPecas() {
         return pecas;
     }
 
     public Peca getPeca(int linha, int coluna) {
         return pecas[linha][coluna];
+    }
+    public Peca getPeca(Casa casa) {
+        return pecas[casa.linha][casa.coluna];
+    }
+
+    public Peca getPeca(String str) {
+        Casa casa = strToCasa(str);
+        return pecas[casa.linha][casa.coluna];
     }
 
 }

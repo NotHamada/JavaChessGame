@@ -46,6 +46,7 @@ public class Main {
           System.out.println(tabuleiro.toString());
 
         }
+        scan.close();
 
     }
 }
