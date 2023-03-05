@@ -6,4 +6,8 @@ public class Casa {
         this.linha = linha;
         this.coluna = coluna;
     }
+    
+    public boolean equals(Casa c){
+      return this.linha == c.linha && this.coluna == c.coluna;
+    }
 }

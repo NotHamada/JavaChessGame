@@ -20,8 +20,8 @@ public class Rei extends Peca {
 
         String destinoTorre = "";
         String partidaTorre = "";
-
-        if (partida == tabuleiro.strToCasa("e8") && destino == tabuleiro.strToCasa("g8")) {
+        
+        if (partida.equals(tabuleiro.strToCasa("e8")) && destino.equals(tabuleiro.strToCasa("g8"))) {
             Peca rei = tabuleiro.getPeca(partida);
             Peca torre = tabuleiro.getPeca(tabuleiro.strToCasa("h8"));
 
@@ -39,7 +39,7 @@ public class Rei extends Peca {
                 destinoTorre = "f8";
             }
 
-        } else if (partida == tabuleiro.strToCasa("e8") && destino == tabuleiro.strToCasa("b8")) {
+        } else if (partida.equals(tabuleiro.strToCasa("e8")) && destino.equals(tabuleiro.strToCasa("b8"))) {
             Peca rei = tabuleiro.getPeca(partida);
             Peca torre = tabuleiro.getPeca(tabuleiro.strToCasa("a8"));
 
@@ -60,13 +60,15 @@ public class Rei extends Peca {
             }
         }
 
-        else if (partida == tabuleiro.strToCasa("e1") && destino == tabuleiro.strToCasa("c1")) {
+        else if (partida.equals(tabuleiro.strToCasa("e1")) && destino.equals(tabuleiro.strToCasa("c1"))) {
             Peca rei = tabuleiro.getPeca(partida);
             Peca torre = tabuleiro.getPeca(tabuleiro.strToCasa("a1"));
+
 
             if (rei.numMovimentos == 0 && torre != null && torre.getClassName() == "Torre"
                     && torre.numMovimentos == 0) {
 
+              /*
                 System.out.printf("%b %b %b %b %b %b", 
                                             (tabuleiro.getPeca("d1") == null),
                                             (tabuleiro.getPeca("c1") == null),
@@ -74,6 +76,7 @@ public class Rei extends Peca {
                                             !tabuleiro.estaAmeacado("d1"),
                                             !tabuleiro.estaAmeacado("c1"),
                                             !tabuleiro.estaAmeacado("b1"));
+              */
 
                 roquePermitido = tabuleiro.getPeca("d1") == null
                         && tabuleiro.getPeca("c1") == null
@@ -89,7 +92,7 @@ public class Rei extends Peca {
             }
         }
 
-        else if (partida == tabuleiro.strToCasa("e1") && destino == tabuleiro.strToCasa("g1")) {
+        else if (partida.equals(tabuleiro.strToCasa("e1")) && destino.equals(tabuleiro.strToCasa("g1"))) {
             Peca rei = tabuleiro.getPeca(partida);
             Peca torre = tabuleiro.getPeca(tabuleiro.strToCasa("h1"));
 
