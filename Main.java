@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -20,12 +22,30 @@ public class Main {
 
             tabuleiro.moverPeca("d7", "d5");
             tabuleiro.moverPeca("e4", "d6");
-            System.out.println(tabuleiro.toString());
+            //System.out.println(tabuleiro.toString());
 
         } catch (MovementNotAllowedException e) {
             System.out.println(e.getMessage());
             System.out.println("Tabuleiro antes do movimento:");
             System.out.println(tabuleiro.toString());
         }
+
+        tabuleiro.inicializaPosicao();
+        Scanner scan = new Scanner(System.in);
+        while(scan.hasNext()){
+          String from = scan.next();
+          String to = scan.next();
+
+          try{
+            tabuleiro.moverPeca(from, to);
+          }
+          catch (MovementNotAllowedException e) {
+            System.out.println(e.getMessage());
+          }
+
+          System.out.println(tabuleiro.toString());
+
+        }
+
     }
 }

@@ -35,8 +35,10 @@ public class Tabuleiro {
         Casa casaDestino = strToCasa(destino);
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
-        if (pecaAMover == null || !pecaAMover.validaMovimento(casaPartida, casaDestino))
-            throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
+        if (pecaAMover == null || !pecaAMover.validaMovimento(casaPartida, casaDestino)){
+            throw new MovementNotAllowedException(pecaAMover != null ? pecaAMover.getClassName() : "casa vazia",
+                                                  partida, destino);
+        }
 
         pecas[casaPartida.linha][casaPartida.coluna] = null;
         pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
