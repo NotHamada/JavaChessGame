@@ -2,7 +2,7 @@ public abstract class Peca {
 
     protected boolean ignoraColisao;
 
-    private Cor jogador;
+    public Cor jogador;
     private String className = this.getClass().getSimpleName();
 
 
@@ -17,6 +17,8 @@ public abstract class Peca {
     }
 
     public abstract boolean movimentoValido(Casa destino, Casa partida);
+
+    public abstract String simboloPeca();
 
     private boolean verificaColisao(Casa partida, Casa destino) {
         if (ignoraColisao)
@@ -105,6 +107,20 @@ public abstract class Peca {
 
     public Tabuleiro getTabuleiro() {
         return tabuleiro;
+    }
+
+    @Override
+    public String toString() {
+
+      if(jogador == Cor.Brancas){
+        return ConsoleColors.GREEN + simboloPeca() + ConsoleColors.RESET;
+      }
+      else if(jogador == Cor.Pretas){
+        return ConsoleColors.RED + simboloPeca() + ConsoleColors.RESET;
+      }
+
+      assert(false);
+      return ".";
     }
 
 }

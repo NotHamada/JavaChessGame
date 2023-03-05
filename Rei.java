@@ -20,7 +20,7 @@ public class Rei extends Peca {
 
         String destinoTorre = "";
         String partidaTorre = "";
-        
+
         if (partida.equals(tabuleiro.strToCasa("e8")) && destino.equals(tabuleiro.strToCasa("g8"))) {
             Peca rei = tabuleiro.getPeca(partida);
             Peca torre = tabuleiro.getPeca(tabuleiro.strToCasa("h8"));
@@ -30,8 +30,8 @@ public class Rei extends Peca {
 
                 roquePermitido = tabuleiro.getPeca("f8") == null
                         && tabuleiro.getPeca("g8") == null
-                        && !tabuleiro.estaAmeacado("f8")
-                        && !tabuleiro.estaAmeacado("g8");
+                        && !tabuleiro.estaAmeacado("f8", rei.jogador)
+                        && !tabuleiro.estaAmeacado("g8", rei.jogador);
             }
 
             if (roquePermitido) {
@@ -49,9 +49,9 @@ public class Rei extends Peca {
                 roquePermitido = tabuleiro.getPeca("d8") == null
                         && tabuleiro.getPeca("c8") == null
                         && tabuleiro.getPeca("b8") == null
-                        && !tabuleiro.estaAmeacado("d8")
-                        && !tabuleiro.estaAmeacado("c8")
-                        && !tabuleiro.estaAmeacado("b8");
+                        && !tabuleiro.estaAmeacado("d8", rei.jogador)
+                        && !tabuleiro.estaAmeacado("c8", rei.jogador)
+                        && !tabuleiro.estaAmeacado("b8", rei.jogador);
             }
 
             if (roquePermitido) {
@@ -64,26 +64,25 @@ public class Rei extends Peca {
             Peca rei = tabuleiro.getPeca(partida);
             Peca torre = tabuleiro.getPeca(tabuleiro.strToCasa("a1"));
 
-
             if (rei.numMovimentos == 0 && torre != null && torre.getClassName() == "Torre"
                     && torre.numMovimentos == 0) {
 
-              /*
-                System.out.printf("%b %b %b %b %b %b", 
-                                            (tabuleiro.getPeca("d1") == null),
-                                            (tabuleiro.getPeca("c1") == null),
-                                            tabuleiro.getPeca("b1") == null,
-                                            !tabuleiro.estaAmeacado("d1"),
-                                            !tabuleiro.estaAmeacado("c1"),
-                                            !tabuleiro.estaAmeacado("b1"));
-              */
+                /*
+                 * System.out.printf("%b %b %b %b %b %b",
+                 * (tabuleiro.getPeca("d1") == null),
+                 * (tabuleiro.getPeca("c1") == null),
+                 * tabuleiro.getPeca("b1") == null,
+                 * !tabuleiro.estaAmeacado("d1"),
+                 * !tabuleiro.estaAmeacado("c1"),
+                 * !tabuleiro.estaAmeacado("b1"));
+                 */
 
                 roquePermitido = tabuleiro.getPeca("d1") == null
                         && tabuleiro.getPeca("c1") == null
                         && tabuleiro.getPeca("b1") == null
-                        && !tabuleiro.estaAmeacado("d1")
-                        && !tabuleiro.estaAmeacado("c1")
-                        && !tabuleiro.estaAmeacado("b1");
+                        && !tabuleiro.estaAmeacado("d1", rei.jogador)
+                        && !tabuleiro.estaAmeacado("c1", rei.jogador)
+                        && !tabuleiro.estaAmeacado("b1", rei.jogador);
             }
 
             if (roquePermitido) {
@@ -101,8 +100,8 @@ public class Rei extends Peca {
 
                 roquePermitido = tabuleiro.getPeca("f1") == null
                         && tabuleiro.getPeca("g1") == null
-                        && !tabuleiro.estaAmeacado("f1")
-                        && !tabuleiro.estaAmeacado("g1");
+                        && !tabuleiro.estaAmeacado("f1", rei.jogador)
+                        && !tabuleiro.estaAmeacado("g1", rei.jogador);
             }
             if (roquePermitido) {
                 destinoTorre = "f1";
@@ -124,8 +123,7 @@ public class Rei extends Peca {
 
     }
 
-    @Override
-    public String toString() {
+    public String simboloPeca() {
         return "R";
     }
 }

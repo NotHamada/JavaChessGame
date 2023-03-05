@@ -35,9 +35,9 @@ public class Tabuleiro {
         Casa casaDestino = strToCasa(destino);
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
-        if (pecaAMover == null || !pecaAMover.validaMovimento(casaPartida, casaDestino)){
+        if (pecaAMover == null || !pecaAMover.validaMovimento(casaPartida, casaDestino)) {
             throw new MovementNotAllowedException(pecaAMover != null ? pecaAMover.getClassName() : "casa vazia",
-                                                  partida, destino);
+                    partida, destino);
         }
 
         pecas[casaPartida.linha][casaPartida.coluna].numMovimentos++;
@@ -109,9 +109,23 @@ public class Tabuleiro {
         return output;
     }
 
-    public boolean estaAmeacado(String str){
-      Casa casa = strToCasa(str);
-      return false;
+    public boolean estaAmeacado(Casa casa, Cor jogador) {
+        for (int i = 0; i < maxLinhas; i++) {
+            for (int j = 0; j < maxColunas; j++) {
+                if (pecas[i][j] != null &&
+                        pecas[i][j].jogador != jogador &&
+                        pecas[i][j].validaMovimento(new Casa(i, j), casa)) {
+
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean estaAmeacado(String str, Cor cor) {
+        Casa casa = strToCasa(str);
+        return estaAmeacado(casa, cor);
     }
 
     public Peca[][] getPecas() {
@@ -121,6 +135,7 @@ public class Tabuleiro {
     public Peca getPeca(int linha, int coluna) {
         return pecas[linha][coluna];
     }
+
     public Peca getPeca(Casa casa) {
         return pecas[casa.linha][casa.coluna];
     }

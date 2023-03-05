@@ -21,9 +21,8 @@ public class Peao extends Peca {
         return movimentoDeCaptura || movimentoNormal;
     }
 
-    @Override
-    public String toString() {
-        return "P";
+    public String simboloPeca(){
+      return "P";
     }
 
 }

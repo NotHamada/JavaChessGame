@@ -11,8 +11,7 @@ public class Torre extends Peca {
         return partida.coluna == destino.coluna || partida.linha == destino.linha;
     }
 
-    @Override
-    public String toString() {
+    public String simboloPeca() {
         return "T";
     }
 }

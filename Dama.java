@@ -11,8 +11,8 @@ public class Dama extends Peca {
         return torre.movimentoValido(partida, destino) || bispo.movimentoValido(partida, destino);
     }
 
-    @Override
-    public String toString() {
+    public String simboloPeca() {
         return "D";
     }
+
 }
