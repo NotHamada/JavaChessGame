@@ -42,21 +42,21 @@ public abstract class Peca {
         }
         // Movimento diagonal
         else if (Math.abs(partida.linha - destino.linha) == Math.abs(partida.coluna - destino.coluna)) {
-            int sinal = (partida.coluna < destino.coluna) ? 1 : -1;
-
-            Casa min = null;
-            if (partida.linha < destino.linha)
-                min = new Casa(partida.linha, partida.coluna);
-            else
-                min = new Casa(destino.linha, destino.coluna);
+            int sinalColuna = (partida.coluna < destino.coluna) ? 1 : -1;
+            int sinalLinha = (partida.linha < destino.linha) ? 1 : -1;
 
             int diferenca = Math.abs(partida.linha - destino.linha);
-            for (int i = 1; i < diferenca; i++) {
-                int lin = min.linha + i;
-                int col = min.coluna + (i * sinal);
 
-                if (tabuleiro.getPeca(lin, col) != null)
+            int lin = partida.linha;
+            int col = partida.coluna;
+
+            for (int i = 1; i < diferenca; i++) {
+                lin += sinalLinha;
+                col += sinalColuna;
+
+                if (tabuleiro.getPeca(lin, col) != null){
                     return false;
+                }
             }
         }
         return true;
