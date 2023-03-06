@@ -45,7 +45,7 @@ public class Peao extends Peca {
             }
 
             if (peaoEsquerda != null && peaoEsquerda.getClassName() == "Peao") {
-                ((Peao) peaoDireita).numMovimentoEnPassant = this.getTabuleiro().contadorMovimentos + 1;
+                ((Peao) peaoEsquerda).numMovimentoEnPassant = this.getTabuleiro().contadorMovimentos + 1;
                 ((Peao) peaoEsquerda).peaoCapturadoEnPassant = new Casa(destino.linha, destino.coluna);
             }
         }
