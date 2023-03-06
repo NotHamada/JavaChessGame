@@ -117,9 +117,9 @@ public class Tabuleiro {
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
                 if (pecas[i][j] != null &&
-                pecas[i][j].jogador != jogador &&
-                pecas[i][j].validaMovimento(new Casa(i, j), casa)) {
-
+                        pecas[i][j].jogador != jogador &&
+                        pecas[i][j].validaMovimento(new Casa(i, j), casa)
+                ) {
                     return true;
                 }
             }

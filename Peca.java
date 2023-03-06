@@ -81,7 +81,8 @@ public abstract class Peca {
         // System.out.println(verificaCasaOcupada(partida, destino));
         // System.out.println(verificaColisao(partida, destino));
 
-        return pecaAMover.movimentoValido(partida, destino)
+        return dentroDoTabuleiro(destino)
+                && pecaAMover.movimentoValido(partida, destino)
                 && verificaCasaOcupada(partida, destino)
                 && verificaColisao(partida, destino);
     }
@@ -111,14 +112,11 @@ public abstract class Peca {
     @Override
     public String toString() {
 
-        if (jogador == Cor.Brancas) {
+        if (jogador == Cor.Brancas) 
             return ConsoleColors.GREEN + simboloPeca() + ConsoleColors.RESET;
-        } else if (jogador == Cor.Pretas) {
-            return ConsoleColors.RED + simboloPeca() + ConsoleColors.RESET;
-        }
-
-        assert (false);
-        return ".";
+            
+        return ConsoleColors.RED + simboloPeca() + ConsoleColors.RESET;
+        
     }
 
 }

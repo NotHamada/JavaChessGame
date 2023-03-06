@@ -9,9 +9,6 @@ public class Bispo extends Peca {
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {
-        if (!dentroDoTabuleiro(destino))
-            return false;
-
         int distColuna = Math.abs(partida.coluna - destino.coluna);
 
         return destino.linha + distColuna == partida.linha || destino.linha - distColuna == partida.linha;
