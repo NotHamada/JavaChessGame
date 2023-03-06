@@ -4,8 +4,7 @@ public class Bispo extends Peca {
         super(jogador, tabuleiro, false);
     }
 
-    @Override
-    public String toString() {
+    public String simboloPeca() {
         return "B";
     }
 

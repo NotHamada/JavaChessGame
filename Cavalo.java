@@ -20,8 +20,7 @@ public class Cavalo extends Peca {
         return false;
     }
 
-    @Override
-    public String toString() {
+    public String simboloPeca() {
         return "C";
     }
 }

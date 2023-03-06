@@ -3,7 +3,9 @@ public class Tabuleiro {
     public static final int maxLinhas = 8;
     public static final int maxColunas = 8;
 
-    private Peca[][] pecas;
+    public Peca[][] pecas;
+
+    public int contadorMovimentos = 0;
 
     public Tabuleiro() {
         pecas = new Peca[maxLinhas][maxColunas];
@@ -23,7 +25,7 @@ public class Tabuleiro {
         pecas[linha][coluna] = peca;
     }
 
-    private Casa strToCasa(String posicao) {
+    public Casa strToCasa(String posicao) {
         int linha = posicao.charAt(1) - '1';
         int coluna = posicao.charAt(0) - 'a';
 
@@ -35,11 +37,17 @@ public class Tabuleiro {
         Casa casaDestino = strToCasa(destino);
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
-        if (pecaAMover == null || !pecaAMover.validaMovimento(casaPartida, casaDestino))
-            throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
+        if (pecaAMover == null || !pecaAMover.validaMovimento(casaPartida, casaDestino)) {
+            throw new MovementNotAllowedException(pecaAMover != null ? pecaAMover.getClassName() : "casa vazia",
+                    partida, destino);
+        }
+
+        pecas[casaPartida.linha][casaPartida.coluna].numMovimentos++;
 
         pecas[casaPartida.linha][casaPartida.coluna] = null;
         pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
+
+        contadorMovimentos++;
     }
 
     public void inicializaPosicao() {
@@ -105,12 +113,40 @@ public class Tabuleiro {
         return output;
     }
 
+    public boolean estaAmeacado(Casa casa, Cor jogador) {
+        for (int i = 0; i < maxLinhas; i++) {
+            for (int j = 0; j < maxColunas; j++) {
+                if (pecas[i][j] != null &&
+                pecas[i][j].jogador != jogador &&
+                pecas[i][j].validaMovimento(new Casa(i, j), casa)) {
+
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean estaAmeacado(String str, Cor cor) {
+        Casa casa = strToCasa(str);
+        return estaAmeacado(casa, cor);
+    }
+
     public Peca[][] getPecas() {
         return pecas;
     }
 
     public Peca getPeca(int linha, int coluna) {
         return pecas[linha][coluna];
+    }
+
+    public Peca getPeca(Casa casa) {
+        return pecas[casa.linha][casa.coluna];
+    }
+
+    public Peca getPeca(String str) {
+        Casa casa = strToCasa(str);
+        return pecas[casa.linha][casa.coluna];
     }
 
 }

@@ -1,10 +1,13 @@
 public abstract class Peca {
 
-    private Cor jogador;
-    private boolean ignoraColisao;
+    protected boolean ignoraColisao;
+
+    public Cor jogador;
     private String className = this.getClass().getSimpleName();
 
-    private Tabuleiro tabuleiro;
+    public Tabuleiro tabuleiro;
+
+    public int numMovimentos = 0;
 
     public Peca(Cor jogador, Tabuleiro tabuleiro, boolean ignoraColisao) {
         this.jogador = jogador;
@@ -13,6 +16,8 @@ public abstract class Peca {
     }
 
     public abstract boolean movimentoValido(Casa destino, Casa partida);
+
+    public abstract String simboloPeca();
 
     private boolean verificaColisao(Casa partida, Casa destino) {
         if (ignoraColisao)
@@ -42,17 +47,21 @@ public abstract class Peca {
         }
         // Movimento diagonal
         else if (Math.abs(partida.linha - destino.linha) == Math.abs(partida.coluna - destino.coluna)) {
-            int sinal = (partida.coluna < destino.coluna) ? 1 : -1;
-
-            Casa min = (partida.linha < destino.linha) ? partida : destino;
+            int sinalColuna = (partida.coluna < destino.coluna) ? 1 : -1;
+            int sinalLinha = (partida.linha < destino.linha) ? 1 : -1;
 
             int diferenca = Math.abs(partida.linha - destino.linha);
-            for (int i = 1; i < diferenca; i++) {
-                int lin = min.linha + i;
-                int col = min.coluna + (i * sinal);
 
-                if (tabuleiro.getPeca(lin, col) != null)
+            int lin = partida.linha;
+            int col = partida.coluna;
+
+            for (int i = 1; i < diferenca; i++) {
+                lin += sinalLinha;
+                col += sinalColuna;
+
+                if (tabuleiro.getPeca(lin, col) != null) {
                     return false;
+                }
             }
         }
         return true;
@@ -97,6 +106,19 @@ public abstract class Peca {
 
     public Tabuleiro getTabuleiro() {
         return tabuleiro;
+    }
+
+    @Override
+    public String toString() {
+
+        if (jogador == Cor.Brancas) {
+            return ConsoleColors.GREEN + simboloPeca() + ConsoleColors.RESET;
+        } else if (jogador == Cor.Pretas) {
+            return ConsoleColors.RED + simboloPeca() + ConsoleColors.RESET;
+        }
+
+        assert (false);
+        return ".";
     }
 
 }
