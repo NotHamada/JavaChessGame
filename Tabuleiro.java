@@ -3,7 +3,9 @@ public class Tabuleiro {
     public static final int maxLinhas = 8;
     public static final int maxColunas = 8;
 
-    private Peca[][] pecas;
+    public Peca[][] pecas;
+
+    public int contadorMovimentos = 0;
 
     public Tabuleiro() {
         pecas = new Peca[maxLinhas][maxColunas];
@@ -44,6 +46,8 @@ public class Tabuleiro {
 
         pecas[casaPartida.linha][casaPartida.coluna] = null;
         pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
+
+        contadorMovimentos++;
     }
 
     public void inicializaPosicao() {
@@ -113,8 +117,8 @@ public class Tabuleiro {
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
                 if (pecas[i][j] != null &&
-                        pecas[i][j].jogador != jogador &&
-                        pecas[i][j].validaMovimento(new Casa(i, j), casa)) {
+                pecas[i][j].jogador != jogador &&
+                pecas[i][j].validaMovimento(new Casa(i, j), casa)) {
 
                     return true;
                 }

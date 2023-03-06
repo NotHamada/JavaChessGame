@@ -39,7 +39,7 @@ public class Rei extends Peca {
                 destinoTorre = "f8";
             }
 
-        } else if (partida.equals(tabuleiro.strToCasa("e8")) && destino.equals(tabuleiro.strToCasa("b8"))) {
+        } else if (partida.equals(tabuleiro.strToCasa("e8")) && destino.equals(tabuleiro.strToCasa("c8"))) {
             Peca rei = tabuleiro.getPeca(partida);
             Peca torre = tabuleiro.getPeca(tabuleiro.strToCasa("a8"));
 

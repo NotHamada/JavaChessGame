@@ -5,10 +5,9 @@ public abstract class Peca {
     public Cor jogador;
     private String className = this.getClass().getSimpleName();
 
-
     public Tabuleiro tabuleiro;
 
-    public int numMovimentos=0;
+    public int numMovimentos = 0;
 
     public Peca(Cor jogador, Tabuleiro tabuleiro, boolean ignoraColisao) {
         this.jogador = jogador;
@@ -60,7 +59,7 @@ public abstract class Peca {
                 lin += sinalLinha;
                 col += sinalColuna;
 
-                if (tabuleiro.getPeca(lin, col) != null){
+                if (tabuleiro.getPeca(lin, col) != null) {
                     return false;
                 }
             }
@@ -112,15 +111,14 @@ public abstract class Peca {
     @Override
     public String toString() {
 
-      if(jogador == Cor.Brancas){
-        return ConsoleColors.GREEN + simboloPeca() + ConsoleColors.RESET;
-      }
-      else if(jogador == Cor.Pretas){
-        return ConsoleColors.RED + simboloPeca() + ConsoleColors.RESET;
-      }
+        if (jogador == Cor.Brancas) {
+            return ConsoleColors.GREEN + simboloPeca() + ConsoleColors.RESET;
+        } else if (jogador == Cor.Pretas) {
+            return ConsoleColors.RED + simboloPeca() + ConsoleColors.RESET;
+        }
 
-      assert(false);
-      return ".";
+        assert (false);
+        return ".";
     }
 
 }
