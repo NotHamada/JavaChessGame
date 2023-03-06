@@ -44,11 +44,7 @@ public abstract class Peca {
         else if (Math.abs(partida.linha - destino.linha) == Math.abs(partida.coluna - destino.coluna)) {
             int sinal = (partida.coluna < destino.coluna) ? 1 : -1;
 
-            Casa min = null;
-            if (partida.linha < destino.linha)
-                min = new Casa(partida.linha, partida.coluna);
-            else
-                min = new Casa(destino.linha, destino.coluna);
+            Casa min = (partida.linha < destino.linha) ? partida : destino;
 
             int diferenca = Math.abs(partida.linha - destino.linha);
             for (int i = 1; i < diferenca; i++) {

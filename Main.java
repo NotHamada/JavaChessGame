@@ -19,7 +19,7 @@ public class Main {
             tabuleiro.moverPeca("e2", "d3");
 
             tabuleiro.moverPeca("d7", "d5");
-            tabuleiro.moverPeca("e4", "d6");
+            tabuleiro.moverPeca("e4", "d5");
             System.out.println(tabuleiro.toString());
 
         } catch (MovementNotAllowedException e) {
