@@ -7,8 +7,11 @@ public class Tabuleiro {
 
     public int contadorMovimentos = 0;
 
+    public Cor turno;
+
     public Tabuleiro() {
         pecas = new Peca[maxLinhas][maxColunas];
+        turno = Cor.Brancas;
     }
 
     private void addPeca(Peca peca, int linha, int coluna) {
@@ -37,6 +40,12 @@ public class Tabuleiro {
         Casa casaDestino = strToCasa(destino);
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
+
+        // Verifica se a jogada foi do jogador correto, ou seja, aquele 
+        // em que está no turno
+        if (pecaAMover.getJogador() != turno)
+            throw new MovementNotAllowedException();
+
         if (pecaAMover == null || !pecaAMover.validaMovimento(casaPartida, casaDestino)) {
             throw new MovementNotAllowedException(pecaAMover != null ? pecaAMover.getClassName() : "casa vazia",
                     partida, destino);
@@ -48,6 +57,12 @@ public class Tabuleiro {
         pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
 
         contadorMovimentos++;
+
+        // Passa o turno para o outro jogador
+        if (turno == Cor.Brancas)
+            turno = Cor.Pretas;
+        else
+            turno = Cor.Brancas;
     }
 
     public void inicializaPosicao() {
@@ -130,6 +145,25 @@ public class Tabuleiro {
     public boolean estaAmeacado(String str, Cor cor) {
         Casa casa = strToCasa(str);
         return estaAmeacado(casa, cor);
+    }
+
+    public boolean estaXeque() {
+        /* Verifica se o rei do jogador no turno atual está em xeque */
+
+        // Encontra o rei do jogador que está no turno
+        for (int i = 0; i < maxLinhas; i++) {
+            for (int j = 0; j < maxColunas; j++) {
+                if (pecas[i][j] != null &&
+                pecas[i][j].getClassName() == "Rei" 
+                && pecas[i][j].getJogador() == this.turno){
+
+                    // Verifica se o rei está em xeque
+                    Casa casa = new Casa(i, j);
+                    return estaAmeacado(casa, this.turno);
+                }
+            }
+        }
+        return false;
     }
 
     public Peca[][] getPecas() {
