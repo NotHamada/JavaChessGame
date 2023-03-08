@@ -11,6 +11,9 @@ public class Peao extends Peca {
         if (!dentroDoTabuleiro(destino))
             return false;
 
+        if(tabuleiro.getPeca(destino) != null)
+            return false;
+
         int sinal = (this.getJogador() == Cor.Brancas) ? 1 : -1;
 
         boolean movimentoDeCaptura = (partida.coluna + 1 == destino.coluna || partida.coluna - 1 == destino.coluna)
