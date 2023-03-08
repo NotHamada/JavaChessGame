@@ -111,7 +111,7 @@ public class Rei extends Peca {
 
         if (roquePermitido) {
             try {
-                this.tabuleiro.moverPeca(partidaTorre, destinoTorre);
+                roque(partidaTorre, destinoTorre);
             } catch (MovementNotAllowedException e) {
                 System.out.println(e.getMessage());
             }
@@ -121,6 +121,20 @@ public class Rei extends Peca {
 
         return movimentoNormal || roquePermitido;
 
+    }
+
+    public void roque(String partida, String destino) throws MovementNotAllowedException
+    {
+        var torre = this.tabuleiro.getPeca(partida);
+        Casa partidaTorre = this.tabuleiro.strToCasa(partida);
+        Casa destinoTorre = this.tabuleiro.strToCasa(destino);
+
+        this.tabuleiro.pecas[partidaTorre.linha][partidaTorre.coluna] = null;
+        this.tabuleiro.pecas[destinoTorre.linha][destinoTorre.coluna] = torre;
+
+        torre.numMovimentos++;
+
+        this.tabuleiro.contadorMovimentos++;
     }
 
     public String simboloPeca() {
