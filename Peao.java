@@ -11,9 +11,6 @@ public class Peao extends Peca {
         if (!dentroDoTabuleiro(destino))
             return false;
 
-        if(tabuleiro.getPeca(destino) != null)
-            return false;
-
         int sinal = (this.getJogador() == Cor.Brancas) ? 1 : -1;
 
         boolean movimentoDeCaptura = (partida.coluna + 1 == destino.coluna || partida.coluna - 1 == destino.coluna)
@@ -22,7 +19,8 @@ public class Peao extends Peca {
 
         boolean movimentoNormal = partida.coluna == destino.coluna
                 && (partida.linha + sinal == destino.linha
-                        || ((partida.linha + (2 * sinal) == destino.linha) && this.numMovimentos == 0));
+                        || ((partida.linha + (2 * sinal) == destino.linha) && this.numMovimentos == 0))
+                        && this.getTabuleiro().getPeca(destino) == null;
 
         boolean enPassant = this.numMovimentoEnPassant == this.getTabuleiro().contadorMovimentos
                 && partida.linha + sinal == destino.linha
