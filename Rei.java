@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Rei extends Peca {
 
     public Rei(Cor jogador, Tabuleiro tabuleiro) {
@@ -123,8 +126,7 @@ public class Rei extends Peca {
 
     }
 
-    public void roque(String partida, String destino) throws MovementNotAllowedException
-    {
+    public void roque(String partida, String destino) throws MovementNotAllowedException {
         var torre = this.tabuleiro.getPeca(partida);
         Casa partidaTorre = this.tabuleiro.strToCasa(partida);
         Casa destinoTorre = this.tabuleiro.strToCasa(destino);
@@ -135,6 +137,48 @@ public class Rei extends Peca {
         torre.numMovimentos++;
 
         this.tabuleiro.contadorMovimentos++;
+    }
+
+    public List<Casa> casasDoRei(Casa casaInicial) {
+        List<Casa> casas = new ArrayList<Casa>();
+
+        if (casaInicial.linha + 1 <= 7) {
+            var superior = new Casa(casaInicial.linha + 1, casaInicial.coluna);
+            casas.add(superior);
+
+            if (casaInicial.coluna - 1 >= 0) {
+                var superiorEsquerda = new Casa(casaInicial.linha + 1, casaInicial.coluna - 1);
+                casas.add(superiorEsquerda);
+                var esquerda = new Casa(casaInicial.linha, casaInicial.coluna - 1);
+                casas.add(esquerda);
+            }
+
+            if (casaInicial.coluna + 1 <= 7) {
+                var superiorDireita = new Casa(casaInicial.linha + 1, casaInicial.coluna + 1);
+                casas.add(superiorDireita);
+                var direita = new Casa(casaInicial.linha, casaInicial.coluna + 1);
+                casas.add(direita);
+            }
+
+        }
+
+        if (casaInicial.linha - 1 >= 0) {
+            var inferior = new Casa(casaInicial.linha - 1, casaInicial.coluna);
+
+            if (casaInicial.coluna - 1 >= 0) {
+                var inferiorEsquerda = new Casa(casaInicial.linha - 1, casaInicial.coluna - 1);
+                casas.add(inferiorEsquerda);
+            }
+
+            if (casaInicial.coluna + 1 <= 7) {
+                var inferiorDireita = new Casa(casaInicial.linha - 1, casaInicial.coluna + 1);
+                casas.add(inferiorDireita);
+            }
+
+            casas.add(inferior);
+        }
+
+        return casas;
     }
 
     public String simboloPeca() {

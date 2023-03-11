@@ -41,7 +41,7 @@ public class Tabuleiro {
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
 
-        // Verifica se a jogada foi do jogador correto, ou seja, aquele 
+        // Verifica se a jogada foi do jogador correto, ou seja, aquele
         // em que está no turno
         if (pecaAMover.getJogador() != turno)
             throw new MovementNotAllowedException();
@@ -58,6 +58,8 @@ public class Tabuleiro {
 
         contadorMovimentos++;
 
+        if (estaXeque())
+            voltarMovimento(casaPartida, casaDestino, pecaAMover);
         // Passa o turno para o outro jogador
         if (turno == Cor.Brancas)
             turno = Cor.Pretas;
@@ -132,8 +134,8 @@ public class Tabuleiro {
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
                 if (pecas[i][j] != null &&
-                pecas[i][j].jogador != jogador &&
-                pecas[i][j].validaMovimento(new Casa(i, j), casa)) {
+                        pecas[i][j].jogador != jogador &&
+                        pecas[i][j].validaMovimento(new Casa(i, j), casa)) {
 
                     return true;
                 }
@@ -154,8 +156,8 @@ public class Tabuleiro {
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
                 if (pecas[i][j] != null &&
-                pecas[i][j].getClassName() == "Rei" 
-                && pecas[i][j].getJogador() == this.turno){
+                        pecas[i][j].getClassName() == "Rei"
+                        && pecas[i][j].getJogador() == this.turno) {
 
                     // Verifica se o rei está em xeque
                     Casa casa = new Casa(i, j);
@@ -164,6 +166,18 @@ public class Tabuleiro {
             }
         }
         return false;
+    }
+
+    public void voltarMovimento(Casa casaPartida, Casa casaDestino, Peca pecaAMover)
+            throws MovementNotAllowedException {
+        pecas[casaDestino.linha][casaDestino.coluna].numMovimentos--;
+
+        pecas[casaDestino.linha][casaDestino.coluna] = null;
+        pecas[casaPartida.linha][casaPartida.coluna] = pecaAMover;
+
+        contadorMovimentos--;
+
+        throw new MovementNotAllowedException();
     }
 
     public Peca[][] getPecas() {
