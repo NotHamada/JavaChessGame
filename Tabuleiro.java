@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tabuleiro {
 
     public static final int maxLinhas = 8;
@@ -166,6 +169,80 @@ public class Tabuleiro {
             }
         }
         return false;
+    }
+
+    public void xequeMate() {
+        for (int i = 0; i < maxLinhas; i++) {
+            for (int j = 0; j < maxColunas; j++) {
+                if (pecas[i][j] != null &&
+                        pecas[i][j].getClassName() == "Rei"
+                        && pecas[i][j].getJogador() == this.turno) {
+
+                    // Verifica se o rei está em xeque
+                    Casa casa = new Casa(i, j);
+                    var casasDorei = casasDoRei(casa);
+
+                    List<Boolean> verificarXequeMate = new ArrayList<Boolean>();
+
+                    for (Casa casaDoRei : casasDorei) {
+                        verificarXequeMate.add(estaAmeacado(casa, this.turno));
+                    }
+
+                    if (!verificarXequeMate.contains(true)) {
+                        System.out.println("Xeque-mate!");
+                        System.exit(1);
+                    }
+                }
+            }
+        }
+    }
+
+    public List<Casa> casasDoRei(Casa casaInicial) {
+        List<Casa> casas = new ArrayList<Casa>();
+
+        if (casaInicial.linha + 1 <= 7) {
+            var superior = new Casa(casaInicial.linha + 1, casaInicial.coluna);
+            casas.add(superior);
+
+            if (casaInicial.coluna - 1 >= 0) {
+                var superiorEsquerda = new Casa(casaInicial.linha + 1, casaInicial.coluna - 1);
+                casas.add(superiorEsquerda);
+            }
+
+            if (casaInicial.coluna + 1 <= 7) {
+                var superiorDireita = new Casa(casaInicial.linha + 1, casaInicial.coluna + 1);
+                casas.add(superiorDireita);
+            }
+
+        }
+
+        if (casaInicial.coluna - 1 >= 0) {
+            var esquerda = new Casa(casaInicial.linha, casaInicial.coluna - 1);
+            casas.add(esquerda);
+        }
+
+        if (casaInicial.coluna + 1 <= 7) {
+            var direita = new Casa(casaInicial.linha, casaInicial.coluna + 1);
+            casas.add(direita);
+        }
+
+        if (casaInicial.linha - 1 >= 0) {
+            var inferior = new Casa(casaInicial.linha - 1, casaInicial.coluna);
+
+            if (casaInicial.coluna - 1 >= 0) {
+                var inferiorEsquerda = new Casa(casaInicial.linha - 1, casaInicial.coluna - 1);
+                casas.add(inferiorEsquerda);
+            }
+
+            if (casaInicial.coluna + 1 <= 7) {
+                var inferiorDireita = new Casa(casaInicial.linha - 1, casaInicial.coluna + 1);
+                casas.add(inferiorDireita);
+            }
+
+            casas.add(inferior);
+        }
+
+        return casas;
     }
 
     public void voltarMovimento(Casa casaPartida, Casa casaDestino, Peca pecaAMover) {
