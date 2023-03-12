@@ -4,9 +4,7 @@ public class Tabuleiro {
     public static final int maxColunas = 8;
 
     public Peca[][] pecas;
-
     public int contadorMovimentos = 0;
-
     public Cor turno;
 
     public Tabuleiro() {

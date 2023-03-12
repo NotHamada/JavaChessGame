@@ -81,7 +81,8 @@ public abstract class Peca {
         // System.out.println(verificaCasaOcupada(partida, destino));
         // System.out.println(verificaColisao(partida, destino));
 
-        return pecaAMover.movimentoValido(partida, destino)
+        return dentroDoTabuleiro(partida) && dentroDoTabuleiro(destino)
+                && pecaAMover.movimentoValido(partida, destino)
                 && verificaCasaOcupada(partida, destino)
                 && verificaColisao(partida, destino);
     }
