@@ -139,48 +139,6 @@ public class Rei extends Peca {
         this.tabuleiro.contadorMovimentos++;
     }
 
-    public List<Casa> casasDoRei(Casa casaInicial) {
-        List<Casa> casas = new ArrayList<Casa>();
-
-        if (casaInicial.linha + 1 <= 7) {
-            var superior = new Casa(casaInicial.linha + 1, casaInicial.coluna);
-            casas.add(superior);
-
-            if (casaInicial.coluna - 1 >= 0) {
-                var superiorEsquerda = new Casa(casaInicial.linha + 1, casaInicial.coluna - 1);
-                casas.add(superiorEsquerda);
-                var esquerda = new Casa(casaInicial.linha, casaInicial.coluna - 1);
-                casas.add(esquerda);
-            }
-
-            if (casaInicial.coluna + 1 <= 7) {
-                var superiorDireita = new Casa(casaInicial.linha + 1, casaInicial.coluna + 1);
-                casas.add(superiorDireita);
-                var direita = new Casa(casaInicial.linha, casaInicial.coluna + 1);
-                casas.add(direita);
-            }
-
-        }
-
-        if (casaInicial.linha - 1 >= 0) {
-            var inferior = new Casa(casaInicial.linha - 1, casaInicial.coluna);
-
-            if (casaInicial.coluna - 1 >= 0) {
-                var inferiorEsquerda = new Casa(casaInicial.linha - 1, casaInicial.coluna - 1);
-                casas.add(inferiorEsquerda);
-            }
-
-            if (casaInicial.coluna + 1 <= 7) {
-                var inferiorDireita = new Casa(casaInicial.linha - 1, casaInicial.coluna + 1);
-                casas.add(inferiorDireita);
-            }
-
-            casas.add(inferior);
-        }
-
-        return casas;
-    }
-
     public String simboloPeca() {
         return "R";
     }
