@@ -1,10 +1,10 @@
 public abstract class Peca {
 
-    protected boolean ignoraColisao;
-    protected String simbolo;
+    private boolean ignoraColisao;
+    private String simbolo;
+    private String className = this.getClass().getSimpleName();
 
     public Cor jogador;
-    private String className = this.getClass().getSimpleName();
 
     public Tabuleiro tabuleiro;
 
