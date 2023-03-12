@@ -7,12 +7,18 @@ public class Tabuleiro {
     public static final int maxColunas = 8;
 
     public Peca[][] pecas;
-    public int contadorMovimentos = 0;
+    public int contadorMovimentos;
     public Cor turno;
     public String mensagemDeVitoria;
 
     public Tabuleiro() {
         pecas = new Peca[maxLinhas][maxColunas];
+        resetaVariaveis();
+    }
+    
+    private void resetaVariaveis() {
+        contadorMovimentos = 0;
+        mensagemDeVitoria = null;
         turno = Cor.Brancas;
     }
 
@@ -216,6 +222,7 @@ public class Tabuleiro {
             for (int j = 0; j < maxColunas; j++)
                 pecas[i][j] = null;
         }
+        resetaVariaveis();
 
         addPeca(new Torre(Cor.Brancas, this), 0, 0);
         addPeca(new Cavalo(Cor.Brancas, this), 0, 1);
