@@ -1,7 +1,7 @@
 public class Peao extends Peca {
 
     public Peao(Cor jogador, Tabuleiro tabuleiro) {
-        super(jogador, tabuleiro, false);
+        super(jogador, tabuleiro, false, "P");
     }
 
     public int numMovimentoEnPassant = -1;
@@ -50,9 +50,4 @@ public class Peao extends Peca {
 
         return movimentoDeCaptura || movimentoNormal || enPassant;
     }
-
-    public String simboloPeca() {
-        return "P";
-    }
-
 }

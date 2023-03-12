@@ -1,11 +1,7 @@
 public class Bispo extends Peca {
 
     public Bispo(Cor jogador, Tabuleiro tabuleiro) {
-        super(jogador, tabuleiro, false);
-    }
-
-    public String simboloPeca() {
-        return "B";
+        super(jogador, tabuleiro, false, "B");
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {

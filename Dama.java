@@ -1,7 +1,7 @@
 public class Dama extends Peca {
 
     public Dama(Cor jogador, Tabuleiro tabuleiro) {
-        super(jogador, tabuleiro, false);
+        super(jogador, tabuleiro, false, "D");
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {
@@ -11,8 +11,5 @@ public class Dama extends Peca {
         return torre.movimentoValido(partida, destino) || bispo.movimentoValido(partida, destino);
     }
 
-    public String simboloPeca() {
-        return "D";
-    }
-
+    
 }

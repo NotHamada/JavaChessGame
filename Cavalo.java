@@ -1,7 +1,7 @@
 public class Cavalo extends Peca {
 
     public Cavalo(Cor jogador, Tabuleiro tabuleiro) {
-        super(jogador, tabuleiro, true);
+        super(jogador, tabuleiro, true, "C");
     }
 
     public boolean movimentoValido(Casa destino, Casa partida) {
@@ -15,9 +15,5 @@ public class Cavalo extends Peca {
                 return true;
         }
         return false;
-    }
-
-    public String simboloPeca() {
-        return "C";
     }
 }

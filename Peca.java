@@ -1,6 +1,7 @@
 public abstract class Peca {
 
     protected boolean ignoraColisao;
+    protected String simbolo;
 
     public Cor jogador;
     private String className = this.getClass().getSimpleName();
@@ -9,15 +10,14 @@ public abstract class Peca {
 
     public int numMovimentos = 0;
 
-    public Peca(Cor jogador, Tabuleiro tabuleiro, boolean ignoraColisao) {
+    public Peca(Cor jogador, Tabuleiro tabuleiro, boolean ignoraColisao, String simbolo) {
         this.jogador = jogador;
         this.tabuleiro = tabuleiro;
         this.ignoraColisao = ignoraColisao;
+        this.simbolo = simbolo;
     }
 
     public abstract boolean movimentoValido(Casa destino, Casa partida);
-
-    public abstract String simboloPeca();
 
     private boolean verificaColisao(Casa partida, Casa destino) {
         if (ignoraColisao)
@@ -82,9 +82,9 @@ public abstract class Peca {
         // System.out.println(verificaColisao(partida, destino));
 
         return dentroDoTabuleiro(partida) && dentroDoTabuleiro(destino)
-                && pecaAMover.movimentoValido(partida, destino)
                 && verificaCasaOcupada(partida, destino)
-                && verificaColisao(partida, destino);
+                && verificaColisao(partida, destino)
+                && pecaAMover.movimentoValido(partida, destino);
     }
 
     public boolean dentroDoTabuleiro(Casa casa) {
@@ -113,9 +113,9 @@ public abstract class Peca {
     public String toString() {
 
         if (jogador == Cor.Brancas) {
-            return ConsoleColors.GREEN + simboloPeca() + ConsoleColors.RESET;
+            return ConsoleColors.GREEN + this.simbolo + ConsoleColors.RESET;
         } else if (jogador == Cor.Pretas) {
-            return ConsoleColors.RED + simboloPeca() + ConsoleColors.RESET;
+            return ConsoleColors.RED + this.simbolo + ConsoleColors.RESET;
         }
 
         assert (false);
