@@ -8,9 +8,6 @@ public class Rei extends Peca {
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {
-        if (!dentroDoTabuleiro(destino))
-            return false;
-
         ignoraColisao = false;
 
         boolean movimentoNormal = (Math.abs(partida.linha - destino.linha) == 1

@@ -5,9 +5,6 @@ public class Cavalo extends Peca {
     }
 
     public boolean movimentoValido(Casa destino, Casa partida) {
-        if (!dentroDoTabuleiro(destino))
-            return false;
-
         int dx[] = { 1, -1, 1, -1, 2, -2, 2, -2 };
         int dy[] = { 2, 2, -2, -2, 1, 1, -1, -1 };
 
