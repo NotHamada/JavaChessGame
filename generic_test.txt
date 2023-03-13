@@ -1,8 +1,4 @@
-e2 e4
-e7 e5
-d1 f3
-b8 c6
-c6 a5
-f1 c4
-a7 a6
-f3 f7
+f2 f3
+e7 e6
+g2 g4
+d8 h4

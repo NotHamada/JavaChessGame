@@ -148,6 +148,8 @@ public class Tabuleiro {
         }
         mensagemDeVitoria = (this.turno == Cor.Brancas) ? "Vitoria das Pretas" : "Vitoria das Brancas";
         System.out.println(mensagemDeVitoria);
+        System.out.println(toString()); 
+        System.exit(1);
     }
 
     private boolean possuiAlgumMovimentoValido(Peca peca, Casa casaDaPeca) {
