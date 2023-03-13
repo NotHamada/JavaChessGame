@@ -6,10 +6,10 @@ public class Tabuleiro {
     public static final int maxLinhas = 8;
     public static final int maxColunas = 8;
 
-    public Peca[][] pecas;
-    public int contadorMovimentos;
-    public Cor turno;
-    public String mensagemDeVitoria;
+    protected Peca[][] pecas;
+    protected int contadorMovimentos;
+    protected Cor turno;
+    protected String mensagemDeVitoria;
 
     public Tabuleiro() {
         pecas = new Peca[maxLinhas][maxColunas];
