@@ -4,10 +4,10 @@ import javax.swing.JFrame;
 
 public class Main {
     public static void main(String[] args) {
-        InterfaceTabuleiro janela = new InterfaceTabuleiro();
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setSize(300, 200);
-        janela.setVisible(true);
+        InterfaceTabuleiro interfaceTabuleiro = new InterfaceTabuleiro();
+        interfaceTabuleiro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        interfaceTabuleiro.setSize(480, 480);
+        interfaceTabuleiro.setVisible(true);
 
         Tabuleiro tabuleiro = new Tabuleiro();
         tabuleiro.inicializaPosicao();
