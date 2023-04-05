@@ -24,7 +24,7 @@ public class Peao extends Peca {
                 && this.peaoCapturadoEnPassant.coluna == destino.coluna;
 
         if (enPassant) {
-            this.tabuleiro.pecas[this.peaoCapturadoEnPassant.linha][this.peaoCapturadoEnPassant.coluna] = null;
+            this.getTabuleiro().pecas[this.peaoCapturadoEnPassant.linha][this.peaoCapturadoEnPassant.coluna] = null;
         }
 
         if (this.numMovimentos == 0 && Math.abs(partida.linha - destino.linha) == 2) {

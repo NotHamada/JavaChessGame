@@ -66,6 +66,8 @@ public class Rei extends Peca {
     }
 
     private boolean verificaCondicaoRoque(Casa partida, Casa destino, Peca torre) {
+        Tabuleiro tabuleiro = this.getTabuleiro();
+
         Peca rei = tabuleiro.getPeca(partida);
 
         if (rei.numMovimentos > 0 || torre.numMovimentos > 0 || !(torre instanceof Torre))
@@ -76,23 +78,25 @@ public class Rei extends Peca {
 
         for (int i = minColuna; i <= maxColuna; i++) {
             Casa casaAChecar = new Casa(partida.linha, i);
-            if (tabuleiro.estaAmeacado(casaAChecar, rei.jogador))
+            if (tabuleiro.estaAmeacado(casaAChecar, rei.getJogador()))
                 return false;
         }
         return true;
     }
 
     private void roque(String partida, String destino) {
-        var torre = this.tabuleiro.getPeca(partida);
-        Casa partidaTorre = this.tabuleiro.strToCasa(partida);
-        Casa destinoTorre = this.tabuleiro.strToCasa(destino);
+        Tabuleiro tabuleiro = this.getTabuleiro();
 
-        this.tabuleiro.pecas[partidaTorre.linha][partidaTorre.coluna] = null;
-        this.tabuleiro.pecas[destinoTorre.linha][destinoTorre.coluna] = torre;
+        var torre = tabuleiro.getPeca(partida);
+        Casa partidaTorre = tabuleiro.strToCasa(partida);
+        Casa destinoTorre = tabuleiro.strToCasa(destino);
+
+        tabuleiro.pecas[partidaTorre.linha][partidaTorre.coluna] = null;
+        tabuleiro.pecas[destinoTorre.linha][destinoTorre.coluna] = torre;
 
         torre.numMovimentos++;
 
-        this.tabuleiro.contadorMovimentos++;
+        tabuleiro.contadorMovimentos++;
     }
 
     public String simboloPeca() {

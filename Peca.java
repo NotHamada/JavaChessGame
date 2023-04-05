@@ -4,8 +4,8 @@ public abstract class Peca {
     private String simbolo;
     private String className = this.getClass().getSimpleName();
 
-    protected Cor jogador;
-    protected Tabuleiro tabuleiro;
+    private Cor jogador;
+    private Tabuleiro tabuleiro;
     protected int numMovimentos = 0;
 
     public Peca(Cor jogador, Tabuleiro tabuleiro, boolean ignoraColisao, String simbolo) {

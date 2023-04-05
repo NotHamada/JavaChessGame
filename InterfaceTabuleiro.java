@@ -26,12 +26,21 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
             botoes[i].setBorderPainted(true);
             botoes[i].setFocusPainted(false);
 
-            if (i % 2 == 0)
-                botoes[i].setBackground(Color.WHITE);
-            else
-                botoes[i].setBackground(Color.BLACK);
+            if(0 <= i%16 && i%16 < 8){
+              if (i % 2 == 0)
+                  botoes[i].setBackground(Color.WHITE);
+              else
+                  botoes[i].setBackground(Color.BLACK);
+            }
+            else{
+              if (i % 2 == 1)
+                  botoes[i].setBackground(Color.WHITE);
+              else
+                  botoes[i].setBackground(Color.BLACK);
+            }
 
             add(botoes[i]);
+
         }
     }
 

@@ -109,7 +109,7 @@ public class Tabuleiro {
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
                 if (pecas[i][j] != null
-                && pecas[i][j].jogador != jogador
+                && pecas[i][j].getJogador() != jogador
                 && pecas[i][j].validaMovimento(new Casa(i, j), casa)) {
                     return true;
                 }
@@ -140,7 +140,7 @@ public class Tabuleiro {
     private void verificaXequeMate() {
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
-                if (pecas[i][j] != null && pecas[i][j].jogador == turno) {
+                if (pecas[i][j] != null && pecas[i][j].getJogador() == turno) {
                     if (possuiAlgumMovimentoValido(pecas[i][j], new Casa(i, j)))
                         return;
                 }
