@@ -27,17 +27,12 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
                 botoesMatriz[i][j].setBorderPainted(false);
                 botoesMatriz[i][j].setFocusPainted(false);
 
-                if (i % 2 == 0) {
-                    if (j % 2 == 0)
-                        botoesMatriz[i][j].setBackground(Color.WHITE);
-                    else
-                        botoesMatriz[i][j].setBackground(Color.decode("#759655"));
-                } else {
-                    if (j % 2 == 0)
-                        botoesMatriz[i][j].setBackground(Color.decode("#759655"));
-                    else
-                        botoesMatriz[i][j].setBackground(Color.WHITE);
-                }
+                if(i%2 == j%2) 
+                    botoesMatriz[i][j].setBackground(Color.WHITE);
+                
+                else 
+                    botoesMatriz[i][j].setBackground(Color.decode("#759655"));
+
 
                 add(botoesMatriz[i][j]);
             }
