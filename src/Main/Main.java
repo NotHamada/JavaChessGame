@@ -5,13 +5,12 @@ import javax.swing.JFrame;
 
 import Controller.Controller;
 import View.InterfaceTabuleiro;
-import Model.*;
+import Model.Tabuleiro;
 
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Tabuleiro tabuleiro = new Tabuleiro();
-        tabuleiro.inicializaPosicao();
 
         InterfaceTabuleiro interfaceTabuleiro = new InterfaceTabuleiro(tabuleiro);
 

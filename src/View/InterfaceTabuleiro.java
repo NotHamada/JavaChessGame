@@ -48,7 +48,7 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
                 botoesMatriz[i][j] = new JButton();
                 botoesMatriz[i][j].addMouseListener(new MouseAdapter() {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mousePressed(MouseEvent e) {
                         casaClicada = true;
                         linhaClicada = linha;
                         colunaClicada = coluna;
