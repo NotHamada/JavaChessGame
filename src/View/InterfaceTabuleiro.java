@@ -102,43 +102,43 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
             case Brancas:
                 switch (p.getSimbolo()) {
                     case "P" -> {
-                        return "./src/Images/Chess_plt60.png";
+                        return "Images/Chess_plt60.png";
                     }
                     case "C" -> {
-                        return "./src/Images/Chess_nlt60.png";
+                        return "Images/Chess_nlt60.png";
                     }
                     case "R" -> {
-                        return "./src/Images/Chess_klt60.png";
+                        return "Images/Chess_klt60.png";
                     }
                     case "T" -> {
-                        return "./src/Images/Chess_rlt60.png";
+                        return "Images/Chess_rlt60.png";
                     }
                     case "D" -> {
-                        return "./src/Images/Chess_qlt60.png";
+                        return "Images/Chess_qlt60.png";
                     }
                     case "B" -> {
-                        return "./src/Images/Chess_blt60.png";
+                        return "Images/Chess_blt60.png";
                     }
                 }
             case Pretas:
                 switch (p.getSimbolo()) {
                     case "P" -> {
-                        return "./src/Images/Chess_pdt60.png";
+                        return "Images/Chess_pdt60.png";
                     }
                     case "C" -> {
-                        return "./src/Images/Chess_ndt60.png";
+                        return "Images/Chess_ndt60.png";
                     }
                     case "R" -> {
-                        return "./src/Images/Chess_kdt60.png";
+                        return "Images/Chess_kdt60.png";
                     }
                     case "T" -> {
-                        return "./src/Images/Chess_rdt60.png";
+                        return "Images/Chess_rdt60.png";
                     }
                     case "D" -> {
-                        return "./src/Images/Chess_qdt60.png";
+                        return "Images/Chess_qdt60.png";
                     }
                     case "B" -> {
-                        return "./src/Images/Chess_bdt60.png";
+                        return "Images/Chess_bdt60.png";
                     }
                 }
 
