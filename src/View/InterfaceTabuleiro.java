@@ -26,6 +26,8 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
     public void resetaCores(){
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
+                //botoesMatriz[i][j].setBorderPainted(false);
+                botoesMatriz[i][j].setFocusPainted(false);
                 if(i%2 == j%2)
                     botoesMatriz[i][j].setBackground(Color.WHITE);
                 else
@@ -61,8 +63,6 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
                         colunaClicada = coluna;
                     }
                 });
-                botoesMatriz[i][j].setBorderPainted(false);
-                botoesMatriz[i][j].setFocusPainted(false);
 
                 add(botoesMatriz[i][j]);
             }
@@ -85,6 +85,7 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
     public void pintaMovimentosPossiveis(List<Casa> movimentosPossives){
         for(Casa casa : movimentosPossives){
             botoesMatriz[casa.linha][casa.coluna].setBackground(Color.decode("#87b5ff"));
+            botoesMatriz[casa.linha][casa.coluna].setBorderPainted(true);
         }
     }
 

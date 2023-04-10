@@ -18,6 +18,7 @@ public class Tabuleiro {
         resetaVariaveis();
     }
 
+
     public boolean jogoAcabou(){
         return mensagemDeVitoria != null;
     }

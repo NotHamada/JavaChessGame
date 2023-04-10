@@ -98,6 +98,7 @@ public class Rei extends Peca {
         torre.numMovimentos++;
 
         tabuleiro.contadorMovimentos++;
+
     }
 
     public String simboloPeca() {

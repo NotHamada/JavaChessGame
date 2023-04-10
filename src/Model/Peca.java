@@ -81,10 +81,11 @@ public abstract class Peca {
         // System.out.println(verificaCasaOcupada(partida, destino));
         // System.out.println(verificaColisao(partida, destino));
 
-        return dentroDoTabuleiro(partida) && dentroDoTabuleiro(destino)
+        return (dentroDoTabuleiro(partida) && dentroDoTabuleiro(destino)
                 && verificaCasaOcupada(partida, destino)
                 && verificaColisao(partida, destino)
-                && pecaAMover.movimentoValido(partida, destino);
+                && pecaAMover.movimentoValido(partida, destino));
+
     }
 
     public boolean dentroDoTabuleiro(Casa casa) {

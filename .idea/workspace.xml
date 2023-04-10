@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="arruma xeque mate (eu acho)">
+    <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="pinta os movimentos possiveis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Casa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Casa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Peao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Peca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peca.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Rei.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Rei.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tabuleiro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" afterDir="false" />
@@ -80,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681092399837</updated>
       <workItem from="1681092401721" duration="10272000" />
-      <workItem from="1681132906103" duration="20373000" />
+      <workItem from="1681132906103" duration="22208000" />
     </task>
     <task id="LOCAL-00001" summary="interface.updatePecas(tabuleiro) --&gt; interface.updateTabuleiro() e mantém o tabuleiro na classe da interface">
       <created>1681138192102</created>
@@ -103,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681149433668</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="pinta os movimentos possiveis">
+      <created>1681155610311</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681155610311</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,6 +140,7 @@
     <MESSAGE value="interface.updatePecas(tabuleiro) --&gt; interface.updateTabuleiro() e mantém o tabuleiro na classe da interface" />
     <MESSAGE value="troca mouseClicked por mousePressed, deixa os movimentos mais responsivos." />
     <MESSAGE value="arruma xeque mate (eu acho)" />
-    <option name="LAST_COMMIT_MESSAGE" value="arruma xeque mate (eu acho)" />
+    <MESSAGE value="pinta os movimentos possiveis" />
+    <option name="LAST_COMMIT_MESSAGE" value="pinta os movimentos possiveis" />
   </component>
 </project>
