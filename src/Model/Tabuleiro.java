@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,10 @@ public class Tabuleiro {
     public Tabuleiro() {
         pecas = new Peca[maxLinhas][maxColunas];
         resetaVariaveis();
+    }
+
+    public boolean jogoAcabou(){
+        return mensagemDeVitoria != null;
     }
     
     private void resetaVariaveis() {
@@ -48,8 +54,12 @@ public class Tabuleiro {
         return str;
     }
 
+    public void moverPeca(Casa partida, Casa destino) throws MovementNotAllowedException{
+        moverPeca(casaToStr(partida), casaToStr(destino));
+    }
+
     public void moverPeca(String partida, String destino) throws MovementNotAllowedException {
-        
+
         Casa casaPartida = strToCasa(partida);
         Casa casaDestino = strToCasa(destino);
 

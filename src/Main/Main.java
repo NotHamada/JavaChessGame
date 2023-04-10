@@ -1,16 +1,26 @@
-import java.util.Scanner;
+package Main;
 
+import java.util.Scanner;
 import javax.swing.JFrame;
 
-public class Main {
-    public static void main(String[] args) {
-        InterfaceTabuleiro interfaceTabuleiro = new InterfaceTabuleiro();
-        interfaceTabuleiro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        interfaceTabuleiro.setSize(480, 480);
-        interfaceTabuleiro.setVisible(true);
+import Controller.Controller;
+import View.InterfaceTabuleiro;
+import Model.*;
 
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
         Tabuleiro tabuleiro = new Tabuleiro();
         tabuleiro.inicializaPosicao();
+
+        InterfaceTabuleiro interfaceTabuleiro = new InterfaceTabuleiro(tabuleiro);
+
+        Controller controlador = new Controller(tabuleiro, interfaceTabuleiro);
+        controlador.iniciaJogo();
+
+
+
+
 
         System.out.println(tabuleiro.toString());
 

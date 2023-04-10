@@ -1,3 +1,4 @@
+package Model;
 public class Rei extends Peca {
 
     public Rei(Cor jogador, Tabuleiro tabuleiro) {

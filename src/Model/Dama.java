@@ -1,3 +1,5 @@
+package Model;
+
 public class Dama extends Peca {
 
     public Dama(Cor jogador, Tabuleiro tabuleiro) {

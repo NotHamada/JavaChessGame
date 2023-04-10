@@ -1,3 +1,5 @@
+package Model;
+
 public class Cavalo extends Peca {
 
     public Cavalo(Cor jogador, Tabuleiro tabuleiro) {

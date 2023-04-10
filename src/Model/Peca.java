@@ -1,3 +1,5 @@
+package Model;
+
 public abstract class Peca {
 
     private boolean ignoraColisao;
@@ -106,6 +108,10 @@ public abstract class Peca {
     public Tabuleiro getTabuleiro() {
         return tabuleiro;
     }
+
+    public String getSimbolo() { return simbolo; }
+
+    public Cor getCor() { return jogador; }
 
     @Override
     public String toString() {

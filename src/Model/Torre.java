@@ -1,3 +1,5 @@
+package Model;
+
 public class Torre extends Peca {
 
     public Torre(Cor jogador, Tabuleiro tabuleiro) {
