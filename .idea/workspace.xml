@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="pinta os movimentos possiveis">
+    <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="varios bugs relacionados a en passant e roque, mas eh isso">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Peca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Rei.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Rei.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tabuleiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681092399837</updated>
       <workItem from="1681092401721" duration="10272000" />
-      <workItem from="1681132906103" duration="22208000" />
+      <workItem from="1681132906103" duration="23067000" />
     </task>
     <task id="LOCAL-00001" summary="interface.updatePecas(tabuleiro) --&gt; interface.updateTabuleiro() e mantém o tabuleiro na classe da interface">
       <created>1681138192102</created>
@@ -108,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681155610311</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="varios bugs relacionados a en passant e roque, mas eh isso">
+      <created>1681157268980</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681157268980</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +145,7 @@
     <MESSAGE value="troca mouseClicked por mousePressed, deixa os movimentos mais responsivos." />
     <MESSAGE value="arruma xeque mate (eu acho)" />
     <MESSAGE value="pinta os movimentos possiveis" />
-    <option name="LAST_COMMIT_MESSAGE" value="pinta os movimentos possiveis" />
+    <MESSAGE value="varios bugs relacionados a en passant e roque, mas eh isso" />
+    <option name="LAST_COMMIT_MESSAGE" value="varios bugs relacionados a en passant e roque, mas eh isso" />
   </component>
 </project>

@@ -23,20 +23,22 @@ public class Controller {
 
         while(!tabuleiro.jogoAcabou()){
 
-            Casa casaSelecionada = interfaceTabuleiro.getCasaClicada();
+            Casa casaInicio = interfaceTabuleiro.getCasaClicada();
+            Casa casaFim = null;
+
             List<Casa> casasPossiveisDestino = new ArrayList<>();
-            Casa casaDestino = null;
+
             boolean movimentoPossivel = false;
 
             while(!movimentoPossivel) {
 
-                casasPossiveisDestino = tabuleiro.getMovimentosPossiveis(casaSelecionada);
+                casasPossiveisDestino = tabuleiro.getMovimentosPossiveis(casaInicio);
                 interfaceTabuleiro.pintaMovimentosPossiveis(casasPossiveisDestino);
 
-                casaDestino = interfaceTabuleiro.getCasaClicada();
+                casaFim = interfaceTabuleiro.getCasaClicada();
 
                 for(Casa c : casasPossiveisDestino){
-                    if(c.equals(casaDestino)){
+                    if(c.equals(casaFim)){
                         movimentoPossivel = true;
                         break;
                     }
@@ -44,13 +46,13 @@ public class Controller {
 
                 interfaceTabuleiro.resetaCores();
                 if(!movimentoPossivel)
-                    casaSelecionada = casaDestino;
+                    casaInicio = casaFim;
 
             }
 
 
             try {
-                tabuleiro.moverPeca(casaSelecionada, casaDestino);
+                tabuleiro.moverPeca(casaInicio, casaFim);
             } catch (MovementNotAllowedException e) {
                 System.out.println(e.getMessage());
             }
