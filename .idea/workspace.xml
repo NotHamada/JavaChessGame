@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="arruma xeque mate (eu acho)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Casa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Casa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Peao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Rei.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Rei.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tabuleiro.java" afterDir="false" />
@@ -49,7 +51,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -78,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681092399837</updated>
       <workItem from="1681092401721" duration="10272000" />
-      <workItem from="1681132906103" duration="14562000" />
+      <workItem from="1681132906103" duration="20373000" />
     </task>
     <task id="LOCAL-00001" summary="interface.updatePecas(tabuleiro) --&gt; interface.updateTabuleiro() e mantém o tabuleiro na classe da interface">
       <created>1681138192102</created>
@@ -94,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681145185502</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="arruma xeque mate (eu acho)">
+      <created>1681149433668</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681149433668</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

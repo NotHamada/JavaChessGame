@@ -1,5 +1,8 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tabuleiro {
 
     public static final int maxLinhas = 8;
@@ -147,7 +150,7 @@ public class Tabuleiro {
     }
 
     
-    private boolean estaEmXeque() {
+    public boolean estaEmXeque() {
         /* Verifica se o rei do jogador no turno atual está em xeque */
         
         for (int i = 0; i < maxLinhas; i++) {
@@ -178,7 +181,9 @@ public class Tabuleiro {
     }
 
     private boolean possuiAlgumMovimentoValido(Peca peca, Casa casaDaPeca) {
+
         boolean estaEmXeque = estaEmXeque();
+
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
                 if (!estaEmXeque && peca.validaMovimento(casaDaPeca, new Casa(i, j)))
@@ -189,8 +194,37 @@ public class Tabuleiro {
                 }
             }
         }
+
         return false;
     }
+
+    public List<Casa> getMovimentosPossiveis(Casa casaDaPeca){
+
+        List<Casa> casasPossiveis = new ArrayList<>();
+        Peca peca = pecas[casaDaPeca.linha][casaDaPeca.coluna];
+
+        if(peca == null || peca.getCor() != turno){
+            return casasPossiveis;
+        }
+
+        boolean estaEmXeque = estaEmXeque();
+        for (int i = 0; i < maxLinhas; i++) {
+            for (int j = 0; j < maxColunas; j++) {
+                if (!estaEmXeque && peca.validaMovimento(casaDaPeca, new Casa(i, j)))
+                    casasPossiveis.add(new Casa(i, j));
+
+                else if(estaEmXeque && peca.validaMovimento(casaDaPeca, new Casa(i, j))
+                        && movimentoTiraReideXeque(casaDaPeca, new Casa(i, j))){
+                    casasPossiveis.add(new Casa(i, j));
+
+                }
+            }
+        }
+
+        return casasPossiveis;
+    }
+
+
 
     public void voltarMovimento(Casa casaPartida, Casa casaDestino, Peca pecaAMover, Peca pecaCapturada) {
         pecas[casaDestino.linha][casaDestino.coluna].numMovimentos--;

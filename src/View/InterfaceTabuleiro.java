@@ -1,31 +1,38 @@
 package View;
 
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import java.awt.GridLayout;
-import java.awt.Color;
-import java.awt.Container;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import Model.Tabuleiro;
 import Model.Peca;
+import java.util.List;
 import Model.Casa;
 
 
 public class InterfaceTabuleiro extends JFrame implements ActionListener {
     private final JButton[][] botoesMatriz;
     private final Container container;
-    private final GridLayout gridLayout1;
 
-    private Tabuleiro tabuleiro;
+    private final Tabuleiro tabuleiro;
 
     private boolean casaClicada = false;
 
     private int linhaClicada, colunaClicada;
+
+    public void resetaCores(){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(i%2 == j%2)
+                    botoesMatriz[i][j].setBackground(Color.WHITE);
+                else
+                    botoesMatriz[i][j].setBackground(Color.decode("#759655"));
+            }
+        }
+    }
 
     public InterfaceTabuleiro(Tabuleiro tabuleiro){
         super("vem de xadra vem");
@@ -33,7 +40,7 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
         this.tabuleiro = tabuleiro;
 
 
-        gridLayout1 = new GridLayout(8, 8); 
+        GridLayout gridLayout1 = new GridLayout(8, 8);
         container = getContentPane();
         setLayout(gridLayout1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,26 +64,28 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
                 botoesMatriz[i][j].setBorderPainted(false);
                 botoesMatriz[i][j].setFocusPainted(false);
 
-                if(i%2 == j%2) 
-                    botoesMatriz[i][j].setBackground(Color.WHITE);
-                else 
-                    botoesMatriz[i][j].setBackground(Color.decode("#759655"));
-
-
                 add(botoesMatriz[i][j]);
             }
 
         }
+        resetaCores();
 
     }
+
 
     public Casa getCasaClicada() throws InterruptedException {
         while(!casaClicada){
             Thread.sleep(1);
         }
-        System.out.println("Clicou!");
+
         casaClicada = false;
         return new Casa(linhaClicada, colunaClicada);
+    }
+
+    public void pintaMovimentosPossiveis(List<Casa> movimentosPossives){
+        for(Casa casa : movimentosPossives){
+            botoesMatriz[casa.linha][casa.coluna].setBackground(Color.decode("#87b5ff"));
+        }
     }
 
 

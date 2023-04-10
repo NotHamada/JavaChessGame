@@ -11,6 +11,6 @@ public class Casa {
 
 
     public boolean equals(Casa c) {
-        return this.linha == c.linha && this.coluna == c.coluna;
+        return linha == c.linha && coluna == c.coluna;
     }
 }

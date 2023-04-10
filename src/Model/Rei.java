@@ -92,8 +92,8 @@ public class Rei extends Peca {
         Casa partidaTorre = tabuleiro.strToCasa(partida);
         Casa destinoTorre = tabuleiro.strToCasa(destino);
 
-        tabuleiro.pecas[partidaTorre.linha][partidaTorre.coluna] = null;
-        tabuleiro.pecas[destinoTorre.linha][destinoTorre.coluna] = torre;
+        tabuleiro.getPecas()[partidaTorre.linha][partidaTorre.coluna] = null;
+        tabuleiro.getPecas()[destinoTorre.linha][destinoTorre.coluna] = torre;
 
         torre.numMovimentos++;
 
