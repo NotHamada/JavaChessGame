@@ -1,8 +1,6 @@
 package View;
 
-import java.io.File;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +14,6 @@ import java.awt.event.MouseEvent;
 import Model.Tabuleiro;
 import Model.Peca;
 import Model.Casa;
-import Model.Cor;
 
 
 public class InterfaceTabuleiro extends JFrame implements ActionListener {
@@ -24,12 +21,17 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
     private final Container container;
     private final GridLayout gridLayout1;
 
+    private Tabuleiro tabuleiro;
+
     private boolean casaClicada = false;
 
     private int linhaClicada, colunaClicada;
 
-    public InterfaceTabuleiro(Tabuleiro tabuleiro) {
+    public InterfaceTabuleiro(Tabuleiro tabuleiro){
         super("vem de xadra vem");
+
+        this.tabuleiro = tabuleiro;
+
 
         gridLayout1 = new GridLayout(8, 8); 
         container = getContentPane();
@@ -134,7 +136,7 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
         }
         return null;
     }
-    public void updatePecas(Tabuleiro tabuleiro)
+    public void updateTabuleiro()
     {
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){

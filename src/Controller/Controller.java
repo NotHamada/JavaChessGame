@@ -15,7 +15,7 @@ public class Controller {
 
     public void iniciaJogo() throws InterruptedException {
         tabuleiro.inicializaPosicao();
-        interfaceTabuleiro.updatePecas(tabuleiro);
+        interfaceTabuleiro.updateTabuleiro();
 
 
         while(!tabuleiro.jogoAcabou()){
@@ -27,7 +27,7 @@ public class Controller {
             } catch (MovementNotAllowedException e) {
                 System.out.println(e.getMessage());
             }
-            interfaceTabuleiro.updatePecas(tabuleiro);
+            interfaceTabuleiro.updateTabuleiro();
 
         }
 
