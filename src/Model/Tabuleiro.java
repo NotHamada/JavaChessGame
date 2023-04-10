@@ -1,14 +1,11 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Tabuleiro {
 
     public static final int maxLinhas = 8;
     public static final int maxColunas = 8;
 
-    protected Peca[][] pecas;
+    private Peca[][] pecas;
     protected int contadorMovimentos;
     protected Cor turno;
     protected String mensagemDeVitoria;
@@ -49,9 +46,8 @@ public class Tabuleiro {
         return new Casa(linha, coluna);
     }
     public String casaToStr(Casa casa) {
-        String str = String.valueOf((char) (casa.coluna + 'a')) + String.valueOf(casa.linha + 1);
-        
-        return str;
+
+        return String.valueOf((char) (casa.coluna + 'a')) + String.valueOf(casa.linha + 1);
     }
 
     public void moverPeca(Casa partida, Casa destino) throws MovementNotAllowedException{
@@ -79,13 +75,14 @@ public class Tabuleiro {
 
         pecas[casaPartida.linha][casaPartida.coluna].numMovimentos++;
 
+        Peca pecaCapturada = pecas[casaDestino.linha][casaDestino.coluna];
         pecas[casaPartida.linha][casaPartida.coluna] = null;
         pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
 
         contadorMovimentos++;
 
         if (estaEmXeque()) {
-            voltarMovimento(casaPartida, casaDestino, pecaAMover);
+            voltarMovimento(casaPartida, casaDestino, pecaAMover, pecaCapturada);
             throw new MovementNotAllowedException("O movimento deixa o rei em cheque");
         }
 
@@ -94,25 +91,46 @@ public class Tabuleiro {
         verificaXequeMate();
     }
 
+    // supoe que o rei está em xeque e o movimento é valido.
+    public boolean movimentoTiraReideXeque(Casa casaPartida, Casa casaDestino){
+
+        Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
+
+        pecas[casaPartida.linha][casaPartida.coluna].numMovimentos++;
+        Peca pecaCapturada = pecas[casaDestino.linha][casaDestino.coluna];
+        pecas[casaPartida.linha][casaPartida.coluna] = null;
+        pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
+        contadorMovimentos++;
+
+        if (estaEmXeque()) {
+            voltarMovimento(casaPartida, casaDestino, pecaAMover, pecaCapturada);
+            return false;
+        }
+        else{
+            voltarMovimento(casaPartida, casaDestino, pecaAMover, pecaCapturada);
+            return true;
+        }
+    }
+
     
     @Override
     public String toString() {
 
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (int i = maxLinhas - 1; i >= 0; i--) {
             
-            output += String.valueOf((char) ('1' + i));
+            output.append(String.valueOf((char) ('1' + i)));
             
             for (int j = 0; j < maxColunas; j++) {
                 if (pecas[i][j] == null)
-                    output += "| ";
+                    output.append("| ");
                 else
-                    output += "|" + pecas[i][j].toString();
+                    output.append("|").append(pecas[i][j].toString());
             }
-            output += "|\n";
+            output.append("|\n");
         }
-        output += " |A|B|C|D|E|F|G|H|\n";
-        return output;
+        output.append(" |A|B|C|D|E|F|G|H|\n");
+        return output.toString();
     }
 
     protected boolean estaAmeacado(Casa casa, Cor jogador) {
@@ -128,10 +146,6 @@ public class Tabuleiro {
         return false;
     }
 
-    protected boolean estaAmeacado(String str, Cor cor) {
-        Casa casa = strToCasa(str);
-        return estaAmeacado(casa, cor);
-    }
     
     private boolean estaEmXeque() {
         /* Verifica se o rei do jogador no turno atual está em xeque */
@@ -151,81 +165,39 @@ public class Tabuleiro {
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
                 if (pecas[i][j] != null && pecas[i][j].getJogador() == turno) {
-                    if (possuiAlgumMovimentoValido(pecas[i][j], new Casa(i, j)))
+                    if (possuiAlgumMovimentoValido(pecas[i][j], new Casa(i, j))) {
                         return;
+                    }
                 }
             }
         }
         mensagemDeVitoria = (this.turno == Cor.Brancas) ? "Vitoria das Pretas" : "Vitoria das Brancas";
         System.out.println(mensagemDeVitoria);
-        System.out.println(toString()); 
+        System.out.println(this);
         System.exit(1);
     }
 
     private boolean possuiAlgumMovimentoValido(Peca peca, Casa casaDaPeca) {
+        boolean estaEmXeque = estaEmXeque();
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
-                if (peca.validaMovimento(casaDaPeca, new Casa(i, j)) && !estaEmXeque())
+                if (!estaEmXeque && peca.validaMovimento(casaDaPeca, new Casa(i, j)))
                     return true;
+                else if(estaEmXeque && peca.validaMovimento(casaDaPeca, new Casa(i, j))
+                && movimentoTiraReideXeque(casaDaPeca, new Casa(i, j))){
+                    return true;
+                }
             }
         }
         return false;
     }
-    
-    public List<Casa> casasDoRei(Casa casaInicial) {
-        List<Casa> casas = new ArrayList<Casa>();
-        
-        if (casaInicial.linha + 1 <= 7) {
-            var superior = new Casa(casaInicial.linha + 1, casaInicial.coluna);
-            casas.add(superior);
-            
-            if (casaInicial.coluna - 1 >= 0) {
-                var superiorEsquerda = new Casa(casaInicial.linha + 1, casaInicial.coluna - 1);
-                casas.add(superiorEsquerda);
-            }
-            
-            if (casaInicial.coluna + 1 <= 7) {
-                var superiorDireita = new Casa(casaInicial.linha + 1, casaInicial.coluna + 1);
-                casas.add(superiorDireita);
-            }
-            
-        }
-        
-        if (casaInicial.coluna - 1 >= 0) {
-            var esquerda = new Casa(casaInicial.linha, casaInicial.coluna - 1);
-            casas.add(esquerda);
-        }
-        
-        if (casaInicial.coluna + 1 <= 7) {
-            var direita = new Casa(casaInicial.linha, casaInicial.coluna + 1);
-            casas.add(direita);
-        }
-        
-        if (casaInicial.linha - 1 >= 0) {
-            var inferior = new Casa(casaInicial.linha - 1, casaInicial.coluna);
 
-            if (casaInicial.coluna - 1 >= 0) {
-                var inferiorEsquerda = new Casa(casaInicial.linha - 1, casaInicial.coluna - 1);
-                casas.add(inferiorEsquerda);
-            }
-
-            if (casaInicial.coluna + 1 <= 7) {
-                var inferiorDireita = new Casa(casaInicial.linha - 1, casaInicial.coluna + 1);
-                casas.add(inferiorDireita);
-            }
-            
-            casas.add(inferior);
-        }
-
-        return casas;
-    }
-    
-    public void voltarMovimento(Casa casaPartida, Casa casaDestino, Peca pecaAMover) {
+    public void voltarMovimento(Casa casaPartida, Casa casaDestino, Peca pecaAMover, Peca pecaCapturada) {
         pecas[casaDestino.linha][casaDestino.coluna].numMovimentos--;
         
-        pecas[casaDestino.linha][casaDestino.coluna] = null;
+        pecas[casaDestino.linha][casaDestino.coluna] = pecaCapturada;
         pecas[casaPartida.linha][casaPartida.coluna] = pecaAMover;
-        
+
         contadorMovimentos--;
     }
     
