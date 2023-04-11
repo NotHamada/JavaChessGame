@@ -13,6 +13,9 @@ public class Tabuleiro {
     protected Cor turno;
     protected String mensagemDeVitoria;
 
+    protected boolean fazRoque = false;
+    protected String idRoque;
+
     public Tabuleiro() {
         pecas = new Peca[maxLinhas][maxColunas];
         resetaVariaveis();
@@ -44,14 +47,14 @@ public class Tabuleiro {
     }
 
     public Casa strToCasa(String posicao) {
-        int linha = posicao.charAt(1) - '1';
+        int linha = '8' - posicao.charAt(1);
         int coluna = posicao.charAt(0) - 'a';
 
         return new Casa(linha, coluna);
     }
     public String casaToStr(Casa casa) {
 
-        return String.valueOf((char) (casa.coluna + 'a')) + String.valueOf(casa.linha + 1);
+        return String.valueOf((char) (casa.coluna + 'a')) + String.valueOf(8 - casa.linha);
     }
 
     public void moverPeca(Casa partida, Casa destino) throws MovementNotAllowedException{
@@ -65,6 +68,14 @@ public class Tabuleiro {
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
 
+        if(fazRoque && pecas[casaPartida.linha][casaPartida.coluna] instanceof Rei){
+            Rei rei = (Rei)pecas[casaPartida.linha][casaPartida.coluna];
+            rei.ignoraColisao = true;
+        }
+        else if(fazRoque && !(pecas[casaPartida.linha][casaPartida.coluna] instanceof Rei)){
+            fazRoque = false;
+        }
+
         if (mensagemDeVitoria != null)
             throw new MovementNotAllowedException("Esta partida ja tem um vencedor");
 
@@ -76,6 +87,13 @@ public class Tabuleiro {
 
         if (!pecaAMover.validaMovimento(casaPartida, casaDestino))
             throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
+
+        if(fazRoque){
+            Rei rei = (Rei)pecas[casaPartida.linha][casaPartida.coluna];
+            rei.roque(idRoque);
+            rei.ignoraColisao = false;
+            fazRoque = false;
+        }
 
         pecas[casaPartida.linha][casaPartida.coluna].numMovimentos++;
 
@@ -243,41 +261,41 @@ public class Tabuleiro {
         }
         resetaVariaveis();
 
-        addPeca(new Torre(Cor.Brancas, this), 0, 0);
-        addPeca(new Cavalo(Cor.Brancas, this), 0, 1);
-        addPeca(new Bispo(Cor.Brancas, this), 0, 2);
-        addPeca(new Dama(Cor.Brancas, this), 0, 3);
-        addPeca(new Rei(Cor.Brancas, this), 0, 4);
-        addPeca(new Bispo(Cor.Brancas, this), 0, 5);
-        addPeca(new Cavalo(Cor.Brancas, this), 0, 6);
-        addPeca(new Torre(Cor.Brancas, this), 0, 7);
+        addPeca(new Torre(Cor.Pretas, this), 0, 0);
+        addPeca(new Cavalo(Cor.Pretas, this), 0, 1);
+        addPeca(new Bispo(Cor.Pretas, this), 0, 2);
+        addPeca(new Dama(Cor.Pretas, this), 0, 3);
+        addPeca(new Rei(Cor.Pretas, this), 0, 4);
+        addPeca(new Bispo(Cor.Pretas, this), 0, 5);
+        addPeca(new Cavalo(Cor.Pretas, this), 0, 6);
+        addPeca(new Torre(Cor.Pretas, this), 0, 7);
 
-        addPeca(new Torre(Cor.Pretas, this), 7, 0);
-        addPeca(new Cavalo(Cor.Pretas, this), 7, 1);
-        addPeca(new Bispo(Cor.Pretas, this), 7, 2);
-        addPeca(new Dama(Cor.Pretas, this), 7, 3);
-        addPeca(new Rei(Cor.Pretas, this), 7, 4);
-        addPeca(new Bispo(Cor.Pretas, this), 7, 5);
-        addPeca(new Cavalo(Cor.Pretas, this), 7, 6);
-        addPeca(new Torre(Cor.Pretas, this), 7, 7);
+        addPeca(new Torre(Cor.Brancas, this), 7, 0);
+        addPeca(new Cavalo(Cor.Brancas, this), 7, 1);
+        addPeca(new Bispo(Cor.Brancas, this), 7, 2);
+        addPeca(new Dama(Cor.Brancas, this), 7, 3);
+        addPeca(new Rei(Cor.Brancas, this), 7, 4);
+        addPeca(new Bispo(Cor.Brancas, this), 7, 5);
+        addPeca(new Cavalo(Cor.Brancas, this), 7, 6);
+        addPeca(new Torre(Cor.Brancas, this), 7, 7);
 
-        addPeca(new Peao(Cor.Pretas, this), 6, 0);
-        addPeca(new Peao(Cor.Pretas, this), 6, 1);
-        addPeca(new Peao(Cor.Pretas, this), 6, 2);
-        addPeca(new Peao(Cor.Pretas, this), 6, 3);
-        addPeca(new Peao(Cor.Pretas, this), 6, 4);
-        addPeca(new Peao(Cor.Pretas, this), 6, 5);
-        addPeca(new Peao(Cor.Pretas, this), 6, 6);
-        addPeca(new Peao(Cor.Pretas, this), 6, 7);
+        addPeca(new Peao(Cor.Brancas, this), 6, 0);
+        addPeca(new Peao(Cor.Brancas, this), 6, 1);
+        addPeca(new Peao(Cor.Brancas, this), 6, 2);
+        addPeca(new Peao(Cor.Brancas, this), 6, 3);
+        addPeca(new Peao(Cor.Brancas, this), 6, 4);
+        addPeca(new Peao(Cor.Brancas, this), 6, 5);
+        addPeca(new Peao(Cor.Brancas, this), 6, 6);
+        addPeca(new Peao(Cor.Brancas, this), 6, 7);
 
-        addPeca(new Peao(Cor.Brancas, this), 1, 0);
-        addPeca(new Peao(Cor.Brancas, this), 1, 1);
-        addPeca(new Peao(Cor.Brancas, this), 1, 2);
-        addPeca(new Peao(Cor.Brancas, this), 1, 3);
-        addPeca(new Peao(Cor.Brancas, this), 1, 4);
-        addPeca(new Peao(Cor.Brancas, this), 1, 5);
-        addPeca(new Peao(Cor.Brancas, this), 1, 6);
-        addPeca(new Peao(Cor.Brancas, this), 1, 7);
+        addPeca(new Peao(Cor.Pretas, this), 1, 0);
+        addPeca(new Peao(Cor.Pretas, this), 1, 1);
+        addPeca(new Peao(Cor.Pretas, this), 1, 2);
+        addPeca(new Peao(Cor.Pretas, this), 1, 3);
+        addPeca(new Peao(Cor.Pretas, this), 1, 4);
+        addPeca(new Peao(Cor.Pretas, this), 1, 5);
+        addPeca(new Peao(Cor.Pretas, this), 1, 6);
+        addPeca(new Peao(Cor.Pretas, this), 1, 7);
     }
 
     public Peca[][] getPecas() {

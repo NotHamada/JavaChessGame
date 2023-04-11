@@ -10,7 +10,7 @@ public class Peao extends Peca {
     public Casa peaoCapturadoEnPassant;
 
     public boolean movimentoValido(Casa partida, Casa destino) {
-        int sinal = (this.getJogador() == Cor.Brancas) ? 1 : -1;
+        int sinal = (this.getJogador() == Cor.Brancas) ? -1 : 1;
 
         boolean movimentoDeCaptura = (partida.coluna + 1 == destino.coluna || partida.coluna - 1 == destino.coluna)
                 && partida.linha + sinal == destino.linha

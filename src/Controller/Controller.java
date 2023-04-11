@@ -36,6 +36,7 @@ public class Controller {
                 interfaceTabuleiro.pintaMovimentosPossiveis(casasPossiveisDestino);
 
                 casaFim = interfaceTabuleiro.getCasaClicada();
+                System.out.println(tabuleiro.casaToStr(casaFim));
 
                 for(Casa c : casasPossiveisDestino){
                     if(c.equals(casaFim)){

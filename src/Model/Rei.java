@@ -22,6 +22,7 @@ public class Rei extends Peca {
 
         String partidaEDestino = tabuleiro.casaToStr(partida) + tabuleiro.casaToStr(destino);
 
+        //System.out.println(partidaEDestino);
         // Roque curto das brancas
         if ("e1g1".equals(partidaEDestino)) {
             torre = tabuleiro.getPeca(tabuleiro.strToCasa("h1"));
@@ -29,7 +30,9 @@ public class Rei extends Peca {
             if (!verificaCondicaoRoque(partida, destino, torre))
                 return false;
 
-            roque("h1", "f1");
+            tabuleiro.fazRoque = true;
+            tabuleiro.idRoque = "h1f1";
+            return true;
         }
         // Roque grande das brancas
         else if ("e1c1".equals(partidaEDestino)) {
@@ -38,7 +41,10 @@ public class Rei extends Peca {
             if (!verificaCondicaoRoque(partida, destino, torre))
                 return false;
 
-            roque("a1", "d1");
+            tabuleiro.fazRoque = true;
+            tabuleiro.idRoque = "a1d1";
+            return true;
+
         }
         // Roque curto das pretas
         else if ("e8g8".equals(partidaEDestino)) {
@@ -47,7 +53,10 @@ public class Rei extends Peca {
             if (!verificaCondicaoRoque(partida, destino, torre))
                 return false;
 
-            roque("h8", "f8");
+            tabuleiro.fazRoque = true;
+            tabuleiro.idRoque = "h8f8";
+            return true;
+
         }
         // Roque grande das pretas
         else if ("e8c8".equals(partidaEDestino)) {
@@ -56,14 +65,16 @@ public class Rei extends Peca {
             if (!verificaCondicaoRoque(partida, destino, torre))
                 return false;
 
-            roque("a8", "d8");
+            tabuleiro.fazRoque = true;
+            tabuleiro.idRoque = "a8d8";
+            return true;
+
         }
         // Não é roque
         else {
             return false;
         }
 
-        return true;
     }
 
     private boolean verificaCondicaoRoque(Casa partida, Casa destino, Peca torre) {
@@ -85,8 +96,13 @@ public class Rei extends Peca {
         return true;
     }
 
-    private void roque(String partida, String destino) {
+    protected void roque(String idRoque) {
+
+        String partida = idRoque.substring(0, 2);
+        String destino = idRoque.substring(2, 4);
+
         Tabuleiro tabuleiro = this.getTabuleiro();
+        this.ignoraColisao = true;
 
         var torre = tabuleiro.getPeca(partida);
         Casa partidaTorre = tabuleiro.strToCasa(partida);

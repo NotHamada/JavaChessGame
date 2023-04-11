@@ -2,12 +2,12 @@ package Model;
 
 public abstract class Peca {
 
-    private boolean ignoraColisao;
-    private String simbolo;
-    private String className = this.getClass().getSimpleName();
+    protected boolean ignoraColisao;
+    private final String simbolo;
+    private final String className = this.getClass().getSimpleName();
 
-    private Cor jogador;
-    private Tabuleiro tabuleiro;
+    private final Cor jogador;
+    private final Tabuleiro tabuleiro;
     protected int numMovimentos = 0;
 
     public Peca(Cor jogador, Tabuleiro tabuleiro, boolean ignoraColisao, String simbolo) {
@@ -16,6 +16,8 @@ public abstract class Peca {
         this.ignoraColisao = ignoraColisao;
         this.simbolo = simbolo;
     }
+
+
 
     public abstract boolean movimentoValido(Casa destino, Casa partida);
 
