@@ -52,7 +52,7 @@ public class Controller {
 
 
             try {
-                tabuleiro.moverPeca(casaInicio, casaFim);
+                tabuleiro.fazMovimento(casaInicio, casaFim);
                 if(tabuleiro.getFazPromocao()){
                     Peca pecaPromovida = interfaceTabuleiro.getPecaPromovida(tabuleiro.getTurno() == Cor.Brancas ?
                                     Cor.Pretas : Cor.Brancas);

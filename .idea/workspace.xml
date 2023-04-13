@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="refatoracao + en passant + promocao">
+    <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="refatoração no switch(tipoMovimento)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tabuleiro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,6 +96,8 @@
       <workItem from="1681319851685" duration="2087000" />
       <workItem from="1681333542943" duration="13735000" />
       <workItem from="1681351224219" duration="2168000" />
+      <workItem from="1681418023851" duration="2357000" />
+      <workItem from="1681421395094" duration="140000" />
     </task>
     <task id="LOCAL-00001" summary="interface.updatePecas(tabuleiro) --&gt; interface.updateTabuleiro() e mantém o tabuleiro na classe da interface">
       <created>1681138192102</created>
@@ -188,7 +192,8 @@
     <MESSAGE value="muda opcao de compilacao" />
     <MESSAGE value="refatoracao + en passant + promocao de peao" />
     <MESSAGE value="refatoracao + en passant + promocao" />
-    <option name="LAST_COMMIT_MESSAGE" value="refatoracao + en passant + promocao" />
+    <MESSAGE value="refatoração no switch(tipoMovimento)" />
+    <option name="LAST_COMMIT_MESSAGE" value="refatoração no switch(tipoMovimento)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

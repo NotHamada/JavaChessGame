@@ -68,7 +68,6 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
 
         }
         resetaCores();
-        this.addComponentListener(new ResizeListener());
 
     }
 
@@ -96,12 +95,6 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
         container.validate(); // rearranja os elementos do container
     }
 
-    static class ResizeListener extends ComponentAdapter {
-        public void componentResized(ComponentEvent arg0) {
-            Rectangle b = arg0.getComponent().getBounds();
-            arg0.getComponent().setBounds(b.x, b.y, b.width, b.width);
-        }
-    }
 
 
     public String caminhoImagemPeca(Peca p){
