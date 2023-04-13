@@ -3,7 +3,7 @@ package Model;
 public class Peao extends Peca {
 
     public Peao(Cor jogador, Tabuleiro tabuleiro) {
-        super(jogador, tabuleiro, false, "P");
+        super(jogador, tabuleiro,  "P");
     }
 
 

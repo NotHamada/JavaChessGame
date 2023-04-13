@@ -3,7 +3,7 @@ package Model;
 public class Torre extends Peca {
 
     public Torre(Cor jogador, Tabuleiro tabuleiro) {
-        super(jogador, tabuleiro, false, "T");
+        super(jogador, tabuleiro, "T");
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {

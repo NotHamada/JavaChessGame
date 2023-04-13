@@ -3,7 +3,7 @@ package Model;
 public class Cavalo extends Peca {
 
     public Cavalo(Cor jogador, Tabuleiro tabuleiro) {
-        super(jogador, tabuleiro, true, "C");
+        super(jogador, tabuleiro, "C");
     }
 
     public boolean movimentoValido(Casa destino, Casa partida) {

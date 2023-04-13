@@ -4,7 +4,7 @@ import java.util.List;
 public class Rei extends Peca {
 
     public Rei(Cor jogador, Tabuleiro tabuleiro) {
-        super(jogador, tabuleiro, false, "R");
+        super(jogador, tabuleiro, "R");
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {
@@ -17,6 +17,7 @@ public class Rei extends Peca {
                 && (Math.abs(partida.coluna - destino.coluna) == 1
                         || Math.abs(partida.coluna - destino.coluna) == 0);
     }
+
 
     public boolean verificaRoque(Casa partida, Casa destino) {
         Tabuleiro tabuleiro = this.getTabuleiro();

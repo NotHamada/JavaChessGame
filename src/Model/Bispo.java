@@ -3,7 +3,7 @@ package Model;
 public class Bispo extends Peca {
 
     public Bispo(Cor jogador, Tabuleiro tabuleiro) {
-        super(jogador, tabuleiro, false, "B");
+        super(jogador, tabuleiro, "B");
     }
 
     public boolean movimentoValido(Casa partida, Casa destino) {

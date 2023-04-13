@@ -2,7 +2,6 @@ package Model;
 
 public abstract class Peca {
 
-    protected boolean ignoraColisao;
     private final String simbolo;
     private final String className = this.getClass().getSimpleName();
 
@@ -11,10 +10,9 @@ public abstract class Peca {
     protected int numMovimentos = 0;
     protected int numUltimoMovimentoRealizado = 0;
 
-    public Peca(Cor jogador, Tabuleiro tabuleiro, boolean ignoraColisao, String simbolo) {
+    public Peca(Cor jogador, Tabuleiro tabuleiro, String simbolo) {
         this.jogador = jogador;
         this.tabuleiro = tabuleiro;
-        this.ignoraColisao = ignoraColisao;
         this.simbolo = simbolo;
     }
 
@@ -23,8 +21,7 @@ public abstract class Peca {
     public abstract boolean movimentoValido(Casa destino, Casa partida);
 
     private boolean verificaColisao(Casa partida, Casa destino) {
-        if (ignoraColisao)
-            return true;
+        if(tabuleiro.getPeca(partida) instanceof Cavalo) return true;
 
         // Movimento na coluna
         if (partida.linha == destino.linha) {
