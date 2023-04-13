@@ -8,13 +8,15 @@ public class Tabuleiro {
     public static final int maxLinhas = 8;
     public static final int maxColunas = 8;
 
-    private Peca[][] pecas;
+    private final Peca[][] pecas;
     protected int contadorMovimentos;
     protected Cor turno;
     protected String mensagemDeVitoria;
+    private boolean fazPromocao;
 
-    protected boolean fazRoque = false;
-    protected String idRoque;
+    public Cor getTurno() {
+        return turno;
+    }
 
     public Tabuleiro() {
         pecas = new Peca[maxLinhas][maxColunas];
@@ -32,85 +34,119 @@ public class Tabuleiro {
         turno = Cor.Brancas;
     }
 
-    private void addPeca(Peca peca, int linha, int coluna) {
+    public void addPeca(Peca peca, int linha, int coluna) {
 
         if (linha < 0 || maxLinhas < linha || coluna < 0 || maxColunas < coluna) {
             System.out.println("Os valores de linha e coluna devem estar no intervalo [0," + (maxColunas - 1) + "]");
-            return;
-        }
-        if (pecas[linha][coluna] != null) {
-            System.out.println("Ja existe peca nesta posicao");
             return;
         }
 
         pecas[linha][coluna] = peca;
     }
 
-    public Casa strToCasa(String posicao) {
-        int linha = '8' - posicao.charAt(1);
-        int coluna = posicao.charAt(0) - 'a';
 
-        return new Casa(linha, coluna);
-    }
-    public String casaToStr(Casa casa) {
-
-        return String.valueOf((char) (casa.coluna + 'a')) + String.valueOf(8 - casa.linha);
-    }
 
     public void moverPeca(Casa partida, Casa destino) throws MovementNotAllowedException{
-        moverPeca(casaToStr(partida), casaToStr(destino));
+        moverPeca(Casa.casaToStr(partida), Casa.casaToStr(destino));
     }
+
 
     public void moverPeca(String partida, String destino) throws MovementNotAllowedException {
 
-        Casa casaPartida = strToCasa(partida);
-        Casa casaDestino = strToCasa(destino);
+        Casa casaPartida = Casa.strToCasa(partida);
+        Casa casaDestino = Casa.strToCasa(destino);
+
+
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
+        Peca pecaCapturada = null;
 
-        if(fazRoque && pecas[casaPartida.linha][casaPartida.coluna] instanceof Rei){
-            Rei rei = (Rei)pecas[casaPartida.linha][casaPartida.coluna];
-            rei.ignoraColisao = true;
+        TipoMovimento tipoMovimento = classificaMovimento(casaPartida, casaDestino);
+
+        switch(tipoMovimento){
+            case Simples -> {
+                pecaAMover.numMovimentos++;
+                pecaAMover.numUltimoMovimentoRealizado = contadorMovimentos;
+
+                pecaCapturada = pecas[casaDestino.linha][casaDestino.coluna];
+                pecas[casaPartida.linha][casaPartida.coluna] = null;
+                pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
+            }
+            case Roque -> {
+                List<Casa> casasRoque = Rei.roque(casaPartida, casaDestino);
+
+                Casa casaAntigaRei = casasRoque.get(0);
+                Casa casaAntigaTorre = casasRoque.get(1);
+                Casa casaNovaRei = casasRoque.get(2);
+                Casa casaNovaTorre = casasRoque.get(3);
+
+                pecas[casaNovaRei.linha][casaNovaRei.coluna] = pecas[casaAntigaRei.linha][casaAntigaRei.coluna];
+                pecas[casaNovaTorre.linha][casaNovaTorre.coluna] = pecas[casaAntigaTorre.linha][casaAntigaTorre.coluna];
+
+                pecas[casaAntigaRei.linha][casaAntigaRei.coluna] = pecas[casaAntigaTorre.linha][casaAntigaTorre.coluna]
+                         = null;
+
+                pecas[casaNovaRei.linha][casaNovaRei.coluna].numMovimentos++;
+                pecas[casaNovaTorre.linha][casaNovaTorre.coluna].numMovimentos++;
+                pecas[casaNovaRei.linha][casaNovaRei.coluna].numUltimoMovimentoRealizado = contadorMovimentos;
+                pecas[casaNovaTorre.linha][casaNovaTorre.coluna].numUltimoMovimentoRealizado = contadorMovimentos;
+
+            }
+            case EnPassant -> {
+                pecaAMover.numMovimentos++;
+                pecaAMover.numUltimoMovimentoRealizado = contadorMovimentos;
+
+                Casa casaPeaoCapturado = Peao.enPassant(casaPartida, casaDestino);
+
+                pecaCapturada = pecas[casaPeaoCapturado.linha][casaPeaoCapturado.coluna];
+                pecas[casaPeaoCapturado.linha][casaPeaoCapturado.coluna] = null;
+
+
+                pecas[casaPartida.linha][casaPartida.coluna] = null;
+                pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
+            }
+            case PromocaoPeao -> {
+                fazPromocao = true;
+
+                pecaAMover.numUltimoMovimentoRealizado = contadorMovimentos;
+                pecaAMover.numMovimentos++;
+
+                pecas[casaPartida.linha][casaPartida.coluna] = null;
+                pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
+            }
+
         }
-        else if(fazRoque && !(pecas[casaPartida.linha][casaPartida.coluna] instanceof Rei)){
-            fazRoque = false;
-        }
 
-        if (mensagemDeVitoria != null)
-            throw new MovementNotAllowedException("Esta partida ja tem um vencedor");
-
-        if (pecaAMover == null)
-            throw new MovementNotAllowedException("casa vazia", partida, destino);
-
-        if (pecaAMover.getJogador() != turno)
-            throw new MovementNotAllowedException("Peca nao pertence ao jogador deste turno");
-
-        if (!pecaAMover.validaMovimento(casaPartida, casaDestino))
-            throw new MovementNotAllowedException(pecaAMover.getClassName(), partida, destino);
-
-        if(fazRoque){
-            Rei rei = (Rei)pecas[casaPartida.linha][casaPartida.coluna];
-            rei.roque(idRoque);
-            rei.ignoraColisao = false;
-            fazRoque = false;
-        }
-
-        pecas[casaPartida.linha][casaPartida.coluna].numMovimentos++;
-
-        Peca pecaCapturada = pecas[casaDestino.linha][casaDestino.coluna];
-        pecas[casaPartida.linha][casaPartida.coluna] = null;
-        pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
 
         contadorMovimentos++;
 
         if (estaEmXeque()) {
             voltarMovimento(casaPartida, casaDestino, pecaAMover, pecaCapturada);
+            contadorMovimentos--;
             throw new MovementNotAllowedException("O movimento deixa o rei em cheque");
         }
 
         this.turno = (this.turno == Cor.Brancas) ? Cor.Pretas : Cor.Brancas;
 
         verificaXequeMate();
+    }
+
+    private TipoMovimento classificaMovimento(Casa casaPartida, Casa casaDestino) {
+        Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
+
+
+        if(pecaAMover instanceof Rei && ((Rei)pecaAMover).verificaRoque(casaPartida, casaDestino)){
+            return TipoMovimento.Roque;
+        }
+        else if(pecaAMover instanceof Peao && ((Peao)pecaAMover).verificaEnPassant(casaPartida, casaDestino)){
+            return TipoMovimento.EnPassant;
+        }
+        else if(pecaAMover instanceof Peao && (casaDestino.linha+1 == 8 || casaDestino.linha+1 == 1)){
+            return TipoMovimento.PromocaoPeao;
+        }
+        else{
+            return TipoMovimento.Simples;
+        }
     }
 
     // supoe que o rei está em xeque e o movimento é valido.
@@ -141,7 +177,7 @@ public class Tabuleiro {
         StringBuilder output = new StringBuilder();
         for (int i = maxLinhas - 1; i >= 0; i--) {
             
-            output.append(String.valueOf((char) ('1' + i)));
+            output.append((char) ('1' + i));
             
             for (int j = 0; j < maxColunas; j++) {
                 if (pecas[i][j] == null)
@@ -311,8 +347,15 @@ public class Tabuleiro {
     }
     
     public Peca getPeca(String str) {
-        Casa casa = strToCasa(str);
+        Casa casa = Casa.strToCasa(str);
         return pecas[casa.linha][casa.coluna];
     }
 
+    public void setFazPromocao(boolean b){
+        fazPromocao = b;
+    }
+
+    public boolean getFazPromocao() {
+        return fazPromocao;
+    }
 }

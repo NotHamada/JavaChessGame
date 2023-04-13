@@ -1,15 +1,14 @@
 package Controller;
 
-import Model.MovementNotAllowedException;
-import Model.Tabuleiro;
+import Model.*;
 import View.InterfaceTabuleiro;
 import Model.Casa;
 
 import java.util.*;
 
 public class Controller {
-    private Tabuleiro tabuleiro;
-    private InterfaceTabuleiro interfaceTabuleiro;
+    private final Tabuleiro tabuleiro;
+    private final InterfaceTabuleiro interfaceTabuleiro;
 
     public Controller(Tabuleiro tabuleiro, InterfaceTabuleiro interfaceTabuleiro){
         this.tabuleiro = tabuleiro;
@@ -26,7 +25,7 @@ public class Controller {
             Casa casaInicio = interfaceTabuleiro.getCasaClicada();
             Casa casaFim = null;
 
-            List<Casa> casasPossiveisDestino = new ArrayList<>();
+            List<Casa> casasPossiveisDestino;
 
             boolean movimentoPossivel = false;
 
@@ -36,7 +35,7 @@ public class Controller {
                 interfaceTabuleiro.pintaMovimentosPossiveis(casasPossiveisDestino);
 
                 casaFim = interfaceTabuleiro.getCasaClicada();
-                System.out.println(tabuleiro.casaToStr(casaFim));
+                System.out.println(Casa.casaToStr(casaFim));
 
                 for(Casa c : casasPossiveisDestino){
                     if(c.equals(casaFim)){
@@ -54,6 +53,13 @@ public class Controller {
 
             try {
                 tabuleiro.moverPeca(casaInicio, casaFim);
+                if(tabuleiro.getFazPromocao()){
+                    Peca pecaPromovida = interfaceTabuleiro.getPecaPromovida(tabuleiro.getTurno() == Cor.Brancas ?
+                                    Cor.Pretas : Cor.Brancas);
+
+                    tabuleiro.addPeca(pecaPromovida, casaFim.linha, casaFim.coluna);
+                    tabuleiro.setFazPromocao(false);
+                }
             } catch (MovementNotAllowedException e) {
                 System.out.println(e.getMessage());
             }

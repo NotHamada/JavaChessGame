@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import Model.Tabuleiro;
-import Model.Peca;
+
+import Model.*;
+
 import java.util.List;
-import Model.Casa;
 
 
 public class InterfaceTabuleiro extends JFrame implements ActionListener {
@@ -156,5 +156,9 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
 
             }
         }
+    }
+
+    public Peca getPecaPromovida(Cor turno) {
+        return new Dama(turno, tabuleiro);
     }
 }

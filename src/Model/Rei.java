@@ -1,4 +1,6 @@
 package Model;
+
+import java.util.List;
 public class Rei extends Peca {
 
     public Rei(Cor jogador, Tabuleiro tabuleiro) {
@@ -16,63 +18,46 @@ public class Rei extends Peca {
                         || Math.abs(partida.coluna - destino.coluna) == 0);
     }
 
-    private boolean verificaRoque(Casa partida, Casa destino) {
+    public boolean verificaRoque(Casa partida, Casa destino) {
         Tabuleiro tabuleiro = this.getTabuleiro();
         Peca torre;
 
-        String partidaEDestino = tabuleiro.casaToStr(partida) + tabuleiro.casaToStr(destino);
+        String partidaEDestino = Casa.casaToStr(partida) + Casa.casaToStr(destino);
 
         //System.out.println(partidaEDestino);
-        // Roque curto das brancas
-        if ("e1g1".equals(partidaEDestino)) {
-            torre = tabuleiro.getPeca(tabuleiro.strToCasa("h1"));
 
-            if (!verificaCondicaoRoque(partida, destino, torre))
+        switch (partidaEDestino) {
+            // Roque curto das brancas
+            case "e1g1" -> {
+                torre = tabuleiro.getPeca(Casa.strToCasa("h1"));
+                return verificaCondicaoRoque(partida, destino, torre);
+            }
+
+            // Roque grande das brancas
+            case "e1c1" -> {
+                torre = tabuleiro.getPeca(Casa.strToCasa("a1"));
+                return verificaCondicaoRoque(partida, destino, torre);
+            }
+
+
+            // Roque curto das pretas
+            case "e8g8" -> {
+                torre = tabuleiro.getPeca(Casa.strToCasa("h8"));
+                return verificaCondicaoRoque(partida, destino, torre);
+            }
+
+
+            // Roque grande das pretas
+            case "e8c8" -> {
+                torre = tabuleiro.getPeca(Casa.strToCasa("a8"));
+                return verificaCondicaoRoque(partida, destino, torre);
+            }
+
+
+            // Não é roque
+            default -> {
                 return false;
-
-            tabuleiro.fazRoque = true;
-            tabuleiro.idRoque = "h1f1";
-            return true;
-        }
-        // Roque grande das brancas
-        else if ("e1c1".equals(partidaEDestino)) {
-            torre = tabuleiro.getPeca(tabuleiro.strToCasa("a1"));
-
-            if (!verificaCondicaoRoque(partida, destino, torre))
-                return false;
-
-            tabuleiro.fazRoque = true;
-            tabuleiro.idRoque = "a1d1";
-            return true;
-
-        }
-        // Roque curto das pretas
-        else if ("e8g8".equals(partidaEDestino)) {
-            torre = tabuleiro.getPeca(tabuleiro.strToCasa("h8"));
-
-            if (!verificaCondicaoRoque(partida, destino, torre))
-                return false;
-
-            tabuleiro.fazRoque = true;
-            tabuleiro.idRoque = "h8f8";
-            return true;
-
-        }
-        // Roque grande das pretas
-        else if ("e8c8".equals(partidaEDestino)) {
-            torre = tabuleiro.getPeca(tabuleiro.strToCasa("a8"));
-
-            if (!verificaCondicaoRoque(partida, destino, torre))
-                return false;
-
-            tabuleiro.fazRoque = true;
-            tabuleiro.idRoque = "a8d8";
-            return true;
-
-        }
-        // Não é roque
-        else {
-            return false;
+            }
         }
 
     }
@@ -95,25 +80,40 @@ public class Rei extends Peca {
         }
         return true;
     }
+    
+    
 
-    protected void roque(String idRoque) {
+    protected static List<Casa> roque(Casa partida, Casa destino) {
+        
+        String idRoque = Casa.casaToStr(partida) + Casa.casaToStr(destino);
+        
+        List<Casa> casasRoque;
 
-        String partida = idRoque.substring(0, 2);
-        String destino = idRoque.substring(2, 4);
+        Casa casaAntigaTorre = null;
+        Casa casaNovaTorre = null;
 
-        Tabuleiro tabuleiro = this.getTabuleiro();
-        this.ignoraColisao = true;
+        switch (idRoque) {
+            case "e1g1" -> {
+                casaAntigaTorre = Casa.strToCasa("h1");
+                casaNovaTorre = Casa.strToCasa("f1");
+            }
+            case "e1c1" -> {
+                casaAntigaTorre = Casa.strToCasa("a1");
+                casaNovaTorre = Casa.strToCasa("d1");
+            }
+            case "e8g8" -> {
+                casaAntigaTorre = Casa.strToCasa("h8");
+                casaNovaTorre = Casa.strToCasa("f8");
+            }
+            case "e8c8" -> {
+                casaAntigaTorre = Casa.strToCasa("a8");
+                casaNovaTorre = Casa.strToCasa("d8");
+            }
+        }
+        casasRoque = List.of(new Casa[]{partida, casaAntigaTorre, destino, casaNovaTorre});
+        
+        return casasRoque;
 
-        var torre = tabuleiro.getPeca(partida);
-        Casa partidaTorre = tabuleiro.strToCasa(partida);
-        Casa destinoTorre = tabuleiro.strToCasa(destino);
-
-        tabuleiro.getPecas()[partidaTorre.linha][partidaTorre.coluna] = null;
-        tabuleiro.getPecas()[destinoTorre.linha][destinoTorre.coluna] = torre;
-
-        torre.numMovimentos++;
-
-        tabuleiro.contadorMovimentos++;
 
     }
 

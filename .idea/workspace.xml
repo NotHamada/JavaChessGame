@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="muda opcao de compilacao">
+    <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="refatoracao + en passant + promocao">
+      <change afterPath="$PROJECT_DIR$/src/Model/TipoMovimento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Casa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Casa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Peao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Peca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peca.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Rei.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Rei.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tabuleiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +57,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;19&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/dev/uem/JavaChessGame&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/william/uem/JavaChessGame&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -96,6 +98,9 @@
       <workItem from="1681092401721" duration="10272000" />
       <workItem from="1681132906103" duration="28901000" />
       <workItem from="1681165328501" duration="6737000" />
+      <workItem from="1681319851685" duration="2087000" />
+      <workItem from="1681333542943" duration="13735000" />
+      <workItem from="1681351224219" duration="410000" />
     </task>
     <task id="LOCAL-00001" summary="interface.updatePecas(tabuleiro) --&gt; interface.updateTabuleiro() e mantém o tabuleiro na classe da interface">
       <created>1681138192102</created>
@@ -181,7 +186,9 @@
     <MESSAGE value="pinta os movimentos possiveis" />
     <MESSAGE value="varios bugs relacionados a en passant e roque, mas eh isso" />
     <MESSAGE value="muda opcao de compilacao" />
-    <option name="LAST_COMMIT_MESSAGE" value="muda opcao de compilacao" />
+    <MESSAGE value="refatoracao + en passant + promocao de peao" />
+    <MESSAGE value="refatoracao + en passant + promocao" />
+    <option name="LAST_COMMIT_MESSAGE" value="refatoracao + en passant + promocao" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -9,6 +9,7 @@ public abstract class Peca {
     private final Cor jogador;
     private final Tabuleiro tabuleiro;
     protected int numMovimentos = 0;
+    protected int numUltimoMovimentoRealizado = 0;
 
     public Peca(Cor jogador, Tabuleiro tabuleiro, boolean ignoraColisao, String simbolo) {
         this.jogador = jogador;

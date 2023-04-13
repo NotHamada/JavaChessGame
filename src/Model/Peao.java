@@ -6,8 +6,27 @@ public class Peao extends Peca {
         super(jogador, tabuleiro, false, "P");
     }
 
-    public int numMovimentoEnPassant = -1;
-    public Casa peaoCapturadoEnPassant;
+
+    public boolean verificaEnPassant(Casa partida, Casa destino){
+        int sinal = (this.getJogador() == Cor.Brancas) ? -1 : 1;
+
+        Tabuleiro tabuleiro = this.getTabuleiro();
+
+        boolean posicaoCorreta = partida.linha + sinal == destino.linha &&
+                Math.abs(destino.coluna - partida.coluna) == 1;
+        boolean temPecaAoLado = tabuleiro.getPecas()[partida.linha][destino.coluna] != null;
+        Peca pecaAoLado = tabuleiro.getPecas()[partida.linha][destino.coluna];
+        boolean temPeaoAoLado = temPecaAoLado && pecaAoLado instanceof Peao;
+
+        return  posicaoCorreta && temPeaoAoLado
+                && pecaAoLado.numUltimoMovimentoRealizado == tabuleiro.contadorMovimentos-1
+                && pecaAoLado.numMovimentos == 1;
+
+    }
+
+    public static Casa enPassant(Casa partida, Casa destino){
+        return new Casa(partida.linha, destino.coluna);
+    }
 
     public boolean movimentoValido(Casa partida, Casa destino) {
         int sinal = (this.getJogador() == Cor.Brancas) ? -1 : 1;
@@ -21,34 +40,7 @@ public class Peao extends Peca {
                         || ((partida.linha + (2 * sinal) == destino.linha) && this.numMovimentos == 0))
                         && this.getTabuleiro().getPeca(destino) == null;
 
-        boolean enPassant = this.numMovimentoEnPassant == this.getTabuleiro().contadorMovimentos
-                && partida.linha + sinal == destino.linha
-                && this.peaoCapturadoEnPassant.coluna == destino.coluna;
-
-        if (enPassant) {
-            this.getTabuleiro().getPecas()[this.peaoCapturadoEnPassant.linha][this.peaoCapturadoEnPassant.coluna] = null;
-        }
-
-        if (this.numMovimentos == 0 && Math.abs(partida.linha - destino.linha) == 2) {
-            Peca peaoDireita = null, peaoEsquerda = null;
-
-            if (destino.coluna + 1 < 8) {
-                peaoDireita = this.getTabuleiro().getPeca(destino.linha, destino.coluna + 1);
-            }
-            if (destino.coluna - 1 >= 0) {
-                peaoEsquerda = this.getTabuleiro().getPeca(destino.linha, destino.coluna - 1);
-            }
-
-            if (peaoDireita != null && peaoDireita.getClassName() == "Peao") {
-                ((Peao) peaoDireita).numMovimentoEnPassant = this.getTabuleiro().contadorMovimentos + 1;
-                ((Peao) peaoDireita).peaoCapturadoEnPassant = new Casa(destino.linha, destino.coluna);
-            }
-
-            if (peaoEsquerda != null && peaoEsquerda.getClassName() == "Peao") {
-                ((Peao) peaoEsquerda).numMovimentoEnPassant = this.getTabuleiro().contadorMovimentos + 1;
-                ((Peao) peaoEsquerda).peaoCapturadoEnPassant = new Casa(destino.linha, destino.coluna);
-            }
-        }
+        boolean enPassant = verificaEnPassant(partida, destino);
 
         return movimentoDeCaptura || movimentoNormal || enPassant;
     }
