@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="refatoracao + en passant + promocao">
-      <change afterPath="$PROJECT_DIR$/src/Model/TipoMovimento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Casa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Casa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Peao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Peca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Rei.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Rei.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tabuleiro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +93,7 @@
       <workItem from="1681165328501" duration="6737000" />
       <workItem from="1681319851685" duration="2087000" />
       <workItem from="1681333542943" duration="13735000" />
-      <workItem from="1681351224219" duration="410000" />
+      <workItem from="1681351224219" duration="2168000" />
     </task>
     <task id="LOCAL-00001" summary="interface.updatePecas(tabuleiro) --&gt; interface.updateTabuleiro() e mantém o tabuleiro na classe da interface">
       <created>1681138192102</created>
@@ -151,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681165144195</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refatoracao + en passant + promocao">
+      <created>1681351694221</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681351694221</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

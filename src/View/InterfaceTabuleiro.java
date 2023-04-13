@@ -3,10 +3,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 import Model.*;
 
@@ -42,6 +39,8 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
         this.tabuleiro = tabuleiro;
 
 
+
+
         GridLayout gridLayout1 = new GridLayout(8, 8);
         container = getContentPane();
         setLayout(gridLayout1);
@@ -69,6 +68,7 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
 
         }
         resetaCores();
+        this.addComponentListener(new ResizeListener());
 
     }
 
@@ -95,6 +95,14 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         container.validate(); // rearranja os elementos do container
     }
+
+    static class ResizeListener extends ComponentAdapter {
+        public void componentResized(ComponentEvent arg0) {
+            Rectangle b = arg0.getComponent().getBounds();
+            arg0.getComponent().setBounds(b.x, b.y, b.width, b.width);
+        }
+    }
+
 
     public String caminhoImagemPeca(Peca p){
         if(p == null) return null;
