@@ -77,10 +77,6 @@ public abstract class Peca {
     public boolean validaMovimento(Casa partida, Casa destino) {
         Peca pecaAMover = tabuleiro.getPeca(partida.linha, partida.coluna);
 
-        // System.out.println(pecaAMover.movimentoValido(partida, destino));
-        // System.out.println(verificaCasaOcupada(partida, destino));
-        // System.out.println(verificaColisao(partida, destino));
-
         return (dentroDoTabuleiro(partida) && dentroDoTabuleiro(destino)
                 && verificaCasaOcupada(partida, destino)
                 && verificaColisao(partida, destino)

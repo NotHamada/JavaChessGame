@@ -7,7 +7,10 @@ import java.awt.event.*;
 
 import Model.*;
 
+
 import java.util.List;
+import java.io.File;
+import java.util.regex.Pattern;
 
 
 public class InterfaceTabuleiro extends JFrame implements ActionListener {
@@ -17,6 +20,11 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
     private final Tabuleiro tabuleiro;
 
     private boolean casaClicada = false;
+
+    private String IMGS_PATH;
+    
+    private String separator = System.getProperty("file.separator");
+
 
     private int linhaClicada, colunaClicada;
 
@@ -39,6 +47,8 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
         this.tabuleiro = tabuleiro;
 
 
+
+        getImgsPath();
 
 
         GridLayout gridLayout1 = new GridLayout(8, 8);
@@ -68,6 +78,31 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
 
         }
         resetaCores();
+
+    }
+
+    private void getImgsPath() {
+
+        if(separator.equals("\\")){
+            separator = "\\";
+        }
+
+        File project_path = new File(".");
+
+        String[] project_path_tokens = project_path.getAbsolutePath().split(Pattern.quote(separator));
+
+        int num_folders = project_path_tokens.length;
+        switch (project_path_tokens[num_folders - 2]) {
+            case "JavaChessGame" -> IMGS_PATH = project_path + separator + "src" + separator;
+            case "src" -> IMGS_PATH = project_path + separator + separator;
+            default -> IMGS_PATH = project_path + separator + "JavaChessGame" + separator + "src" + separator;
+        }
+        File images_path = new File(IMGS_PATH);
+        if(!images_path.exists()){
+            throw new RuntimeException("Não foi possivel encontrar o diretório das imagens. Certifique-se" +
+                    "de rodar o projeto a partir do diretório de projeto.");
+        }
+
 
     }
 
@@ -103,43 +138,43 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
             case Brancas:
                 switch (p.getSimbolo()) {
                     case "P" -> {
-                        return "Images/Chess_plt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_plt60.png";
                     }
                     case "C" -> {
-                        return "Images/Chess_nlt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_nlt60.png";
                     }
                     case "R" -> {
-                        return "Images/Chess_klt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_klt60.png";
                     }
                     case "T" -> {
-                        return "Images/Chess_rlt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_rlt60.png";
                     }
                     case "D" -> {
-                        return "Images/Chess_qlt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_qlt60.png";
                     }
                     case "B" -> {
-                        return "Images/Chess_blt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_blt60.png";
                     }
                 }
             case Pretas:
                 switch (p.getSimbolo()) {
                     case "P" -> {
-                        return "Images/Chess_pdt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_pdt60.png";
                     }
                     case "C" -> {
-                        return "Images/Chess_ndt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_ndt60.png";
                     }
                     case "R" -> {
-                        return "Images/Chess_kdt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_kdt60.png";
                     }
                     case "T" -> {
-                        return "Images/Chess_rdt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_rdt60.png";
                     }
                     case "D" -> {
-                        return "Images/Chess_qdt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_qdt60.png";
                     }
                     case "B" -> {
-                        return "Images/Chess_bdt60.png";
+                        return IMGS_PATH + "Images" + separator + "Chess_bdt60.png";
                     }
                 }
 
