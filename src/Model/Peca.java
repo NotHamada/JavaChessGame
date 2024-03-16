@@ -110,17 +110,4 @@ public abstract class Peca {
 
     public Cor getCor() { return jogador; }
 
-    @Override
-    public String toString() {
-
-        if (jogador == Cor.Brancas) {
-            return ConsoleColors.GREEN + this.simbolo + ConsoleColors.RESET;
-        } else if (jogador == Cor.Pretas) {
-            return ConsoleColors.RED + this.simbolo + ConsoleColors.RESET;
-        }
-
-        assert (false);
-        return ".";
-    }
-
 }

@@ -4,238 +4,88 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="remove ignoraColisao">
+    <list default="true" id="66bd211a-f74c-40d7-9e61-67fbca93ed1c" name="Changes" comment="Remove ConsoleColor -&gt; High number of static fields">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Bispo.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Bispo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Bispo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Bispo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Casa.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Casa.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Cavalo.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cavalo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Dama.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Dama.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Peao.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Peca.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peca.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Peca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Peca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Rei.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Rei.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tabuleiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tabuleiro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Torre.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Torre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/InterfaceTabuleiro$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InterfaceTabuleiro$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/InterfaceTabuleiro$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InterfaceTabuleiro$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InterfaceTabuleiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaChessGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaChessGame.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="5f4ae06d-496a-4b4d-a2a4-9e689e9e4bc0" />
-        <option name="url" value="https://github.com/NotHamada/JavaChessGame" />
-      </UrlAndAccount>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2ODPuGaVlBbaQmigZBV9A0bZ2Dq" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2dlqUGIpoa7vxBYEXA9OWcYGAG0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;GUI&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;19&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/william/uem/JavaChessGame&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "GUI",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/William/IdeaProjects/JavaChessGame/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="19" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Main.Main" />
-      <module name="JavaChessGame" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="20f6565d-ccbe-4ea9-affa-8f1f0a774629" name="Changes" comment="" />
-      <created>1681092399837</created>
+      <changelist id="66bd211a-f74c-40d7-9e61-67fbca93ed1c" name="Changes" comment="" />
+      <created>1710593027407</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1681092399837</updated>
-      <workItem from="1681092401721" duration="10272000" />
-      <workItem from="1681132906103" duration="28901000" />
-      <workItem from="1681165328501" duration="6737000" />
-      <workItem from="1681319851685" duration="2087000" />
-      <workItem from="1681333542943" duration="13735000" />
-      <workItem from="1681351224219" duration="2168000" />
-      <workItem from="1681418023851" duration="2357000" />
-      <workItem from="1681421395094" duration="1963000" />
-      <workItem from="1681423861323" duration="66000" />
-      <workItem from="1681423952491" duration="3049000" />
-      <workItem from="1681558000634" duration="3343000" />
+      <updated>1710593027407</updated>
+      <workItem from="1710593030161" duration="195000" />
+      <workItem from="1710593262736" duration="54000" />
+      <workItem from="1710616598277" duration="1569000" />
     </task>
-    <task id="LOCAL-00001" summary="interface.updatePecas(tabuleiro) --&gt; interface.updateTabuleiro() e mantém o tabuleiro na classe da interface">
-      <created>1681138192102</created>
+    <task id="LOCAL-00001" summary="Remove ConsoleColor -&gt; High number of static fields">
+      <option name="closed" value="true" />
+      <created>1710617897337</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1681138192102</updated>
+      <updated>1710617897337</updated>
     </task>
-    <task id="LOCAL-00002" summary="troca mouseClicked por mousePressed, deixa os movimentos mais responsivos.">
-      <created>1681145185502</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1681145185502</updated>
-    </task>
-    <task id="LOCAL-00003" summary="arruma xeque mate (eu acho)">
-      <created>1681149433668</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1681149433668</updated>
-    </task>
-    <task id="LOCAL-00004" summary="pinta os movimentos possiveis">
-      <created>1681155610311</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1681155610311</updated>
-    </task>
-    <task id="LOCAL-00005" summary="varios bugs relacionados a en passant e roque, mas eh isso">
-      <created>1681157268980</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1681157268980</updated>
-    </task>
-    <task id="LOCAL-00006" summary="varios bugs relacionados a en passant e roque, mas eh isso">
-      <created>1681159120844</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1681159120844</updated>
-    </task>
-    <task id="LOCAL-00007" summary="muda opcao de compilacao">
-      <created>1681165144195</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1681165144195</updated>
-    </task>
-    <task id="LOCAL-00008" summary="refatoracao + en passant + promocao">
-      <created>1681351694221</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1681351694221</updated>
-    </task>
-    <task id="LOCAL-00009" summary="refatoração no switch(tipoMovimento)">
-      <created>1681421590453</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1681421590453</updated>
-    </task>
-    <task id="LOCAL-00010" summary="remove ignoraColisao">
-      <created>1681429743811</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1681429743811</updated>
-    </task>
-    <task id="LOCAL-00011" summary="remove ignoraColisao">
-      <created>1681429788131</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1681429788131</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
-      </list>
-    </option>
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="interface.updatePecas(tabuleiro) --&gt; interface.updateTabuleiro() e mantém o tabuleiro na classe da interface" />
-    <MESSAGE value="troca mouseClicked por mousePressed, deixa os movimentos mais responsivos." />
-    <MESSAGE value="arruma xeque mate (eu acho)" />
-    <MESSAGE value="pinta os movimentos possiveis" />
-    <MESSAGE value="varios bugs relacionados a en passant e roque, mas eh isso" />
-    <MESSAGE value="muda opcao de compilacao" />
-    <MESSAGE value="refatoracao + en passant + promocao de peao" />
-    <MESSAGE value="refatoracao + en passant + promocao" />
-    <MESSAGE value="refatoração no switch(tipoMovimento)" />
-    <MESSAGE value="remove ignoraColisao" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove ignoraColisao" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="Remove ConsoleColor -&gt; High number of static fields" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove ConsoleColor -&gt; High number of static fields" />
   </component>
 </project>
