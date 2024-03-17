@@ -53,7 +53,8 @@ public class Tabuleiro {
                 movePeca(partida, destino);
             }
             case Roque -> {
-                List<Casa> casasRoque = Rei.roque(partida, destino);
+                Rei rei = (Rei) pecas[partida.linha][partida.coluna];
+                List<Casa> casasRoque = rei.roque(partida, destino);
 
                 Casa casaAntigaRei = casasRoque.get(0);
                 Casa casaAntigaTorre = casasRoque.get(1);
