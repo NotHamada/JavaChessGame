@@ -42,44 +42,18 @@ public class Tabuleiro {
     }
 
     public void fazMovimento(Casa partida, Casa destino) throws MovementNotAllowedException {
-        fazMovimento(Casa.casaToStr(partida), Casa.casaToStr(destino));
-    }
-
-    private Peca capturaPeca(Casa casaCapturada) {
-        Peca p = pecas[casaCapturada.linha][casaCapturada.coluna];
-        pecas[casaCapturada.linha][casaCapturada.coluna] = null;
-        return p;
-    }
-
-    // move uma peça de uma casa de partida até uma casa de destino, retornando a peça que foi capturada.
-    private Peca movePeca(Casa casaPartida, Casa casaDestino) {
-        Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
-
-        pecaAMover.numMovimentos++;
-        pecaAMover.numUltimoMovimentoRealizado = contadorMovimentos;
-
-        Peca pecaCapturada = capturaPeca(casaDestino);
-
-        pecas[casaPartida.linha][casaPartida.coluna] = null;
-        pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
-
-        return pecaCapturada;
-    }
-
-    public void fazMovimento(String partida, String destino) throws MovementNotAllowedException {
-        Casa casaPartida = Casa.strToCasa(partida);
-        Casa casaDestino = Casa.strToCasa(destino);
-
-        Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
+        Peca pecaAMover = pecas[partida.linha][partida.coluna];
         Peca pecaCapturada = null;
 
-        TipoMovimento tipoMovimento = classificaMovimento(casaPartida, casaDestino);
+        TipoMovimento tipoMovimento = classificaMovimento(partida, destino);
 
         switch (tipoMovimento) {
-            case Simples -> pecaCapturada = movePeca(casaPartida, casaDestino);
-
+            case Simples -> {
+                pecaCapturada = capturaPeca(destino);
+                movePeca(partida, destino);
+            }
             case Roque -> {
-                List<Casa> casasRoque = Rei.roque(casaPartida, casaDestino);
+                List<Casa> casasRoque = Rei.roque(partida, destino);
 
                 Casa casaAntigaRei = casasRoque.get(0);
                 Casa casaAntigaTorre = casasRoque.get(1);
@@ -90,26 +64,44 @@ public class Tabuleiro {
                 movePeca(casaAntigaTorre, casaNovaTorre);
             }
             case EnPassant -> {
-                Casa casaPeaoCapturado = Peao.enPassant(casaPartida, casaDestino);
+                Casa casaPeaoCapturado = Peao.enPassant(partida, destino);
 
-                movePeca(casaPartida, casaDestino);
                 pecaCapturada = capturaPeca(casaPeaoCapturado);
+                movePeca(partida, destino);
             }
             case PromocaoPeao -> {
                 fazPromocao = true;
-                pecaCapturada = movePeca(casaPartida, casaDestino);
+
+                pecaCapturada = capturaPeca(destino);
+                movePeca(partida, destino);
             }
         }
         contadorMovimentos++;
 
         if (jogadorAtualEstaEmXeque()) {
-            voltarMovimento(casaPartida, casaDestino, pecaAMover, pecaCapturada);
+            voltarMovimento(partida, destino, pecaAMover, pecaCapturada);
             contadorMovimentos--;
             throw new MovementNotAllowedException("O movimento deixa o rei em cheque");
         }
         this.turno = (this.turno == Cor.Brancas) ? Cor.Pretas : Cor.Brancas;
 
         verificaXequeMate();
+    }
+
+    private Peca capturaPeca(Casa casaCapturada) {
+        Peca p = pecas[casaCapturada.linha][casaCapturada.coluna];
+        pecas[casaCapturada.linha][casaCapturada.coluna] = null;
+        return p;
+    }
+
+    private void movePeca(Casa casaPartida, Casa casaDestino) {
+        Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
+
+        pecaAMover.numMovimentos++;
+        pecaAMover.numUltimoMovimentoRealizado = contadorMovimentos;
+
+        pecas[casaDestino.linha][casaDestino.coluna] = pecaAMover;
+        pecas[casaPartida.linha][casaPartida.coluna] = null;
     }
 
     private TipoMovimento classificaMovimento(Casa partida, Casa destino) {
@@ -138,7 +130,7 @@ public class Tabuleiro {
         return toMove instanceof Peao && (destino.linha == Tabuleiro.maxLinhas -1 || destino.linha == 0);
     }
 
-    // supoe que o rei está em xeque e o movimento é valido.
+    // necessita que o rei do jogador atual está em xeque e o movimento é valido.
     public boolean movimentoTiraReideXeque(Casa casaPartida, Casa casaDestino) {
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
@@ -218,9 +210,8 @@ public class Tabuleiro {
     private void verificaXequeMate() {
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
-                if (pecaEhDoJogadorAtual(pecas[i][j]) && jogadorAtualPossuiMovimentoValido(pecas[i][j], new Casa(i, j))) {
+                if (pecaEhDoJogadorAtual(pecas[i][j]) && jogadorAtualPossuiMovimentoValido(pecas[i][j], new Casa(i, j)))
                     return;
-                }
             }
         }
         mensagemDeVitoria = (this.turno == Cor.Brancas) ? "Vitoria das Pretas" : "Vitoria das Brancas";
@@ -245,9 +236,8 @@ public class Tabuleiro {
                 if (!estaEmXeque)
                     return true;
 
-                if (movimentoTiraReideXeque(casaDaPeca, new Casa(i, j))) {
+                if (movimentoTiraReideXeque(casaDaPeca, new Casa(i, j)))
                     return true;
-                }
             }
         }
         return false;
@@ -258,24 +248,20 @@ public class Tabuleiro {
         List<Casa> casasPossiveis = new ArrayList<>();
         Peca peca = pecas[casaDaPeca.linha][casaDaPeca.coluna];
 
-        if (peca == null || peca.getCor() != turno) {
+        if (peca == null || peca.getCor() != turno)
             return casasPossiveis;
-        }
 
         boolean estaEmXeque = jogadorAtualEstaEmXeque();
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
-                if (!estaEmXeque && peca.validaMovimento(casaDaPeca, new Casa(i, j)))
+                Casa casa = new Casa(i, j);
+                if (!peca.validaMovimento(casaDaPeca, casa))
+                    continue;
+                
+                if (!estaEmXeque || (estaEmXeque && movimentoTiraReideXeque(casaDaPeca, casa)))
                     casasPossiveis.add(new Casa(i, j));
-
-                else if (estaEmXeque && peca.validaMovimento(casaDaPeca, new Casa(i, j))
-                        && movimentoTiraReideXeque(casaDaPeca, new Casa(i, j))) {
-                    casasPossiveis.add(new Casa(i, j));
-
-                }
             }
         }
-
         return casasPossiveis;
     }
 

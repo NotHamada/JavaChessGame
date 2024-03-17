@@ -16,16 +16,12 @@ public abstract class Peca {
         this.simbolo = simbolo;
     }
 
-
-
     public abstract boolean movimentoValido(Casa destino, Casa partida);
 
     private boolean verificaColisao(Casa partida, Casa destino) {
         if(tabuleiro.getPeca(partida) instanceof Cavalo) return true;
 
-        // Movimento na coluna
-        if (partida.linha == destino.linha) {
-
+        if (movimentoEmColuna(partida, destino)) {
             int minColuna = Math.min(partida.coluna, destino.coluna);
             int maxColuna = Math.max(partida.coluna, destino.coluna);
 
@@ -34,9 +30,7 @@ public abstract class Peca {
                     return false;
             }
         }
-        // Movimento na linha
-        else if (partida.coluna == destino.coluna) {
-
+        else if (movimentoEmLinha(partida, destino)) {
             int minLinha = Math.min(partida.linha, destino.linha);
             int maxLinha = Math.max(partida.linha, destino.linha);
 
@@ -45,8 +39,7 @@ public abstract class Peca {
                     return false;
             }
         }
-        // Movimento diagonal
-        else if (Math.abs(partida.linha - destino.linha) == Math.abs(partida.coluna - destino.coluna)) {
+        else if (movimentoEmDiagonal(partida, destino)) {
             int sinalColuna = (partida.coluna < destino.coluna) ? 1 : -1;
             int sinalLinha = (partida.linha < destino.linha) ? 1 : -1;
 
@@ -67,6 +60,18 @@ public abstract class Peca {
         return true;
     }
 
+    private boolean movimentoEmLinha(Casa partida, Casa destino) {
+        return partida.coluna == destino.coluna;
+    }
+
+    private boolean movimentoEmColuna(Casa partida, Casa destino) {
+        return partida.linha == destino.linha;
+    }
+
+    private boolean movimentoEmDiagonal(Casa partida, Casa destino) {
+        return Math.abs(partida.linha - destino.linha) == Math.abs(partida.coluna - destino.coluna);
+    }
+
     private boolean verificaCasaOcupada(Casa casaPartida, Casa casaDestino) {
         Peca pecaAMover = tabuleiro.getPeca(casaPartida.linha, casaPartida.coluna);
         Peca pecaDestino = tabuleiro.getPeca(casaDestino.linha, casaDestino.coluna);
@@ -81,7 +86,6 @@ public abstract class Peca {
                 && verificaCasaOcupada(partida, destino)
                 && verificaColisao(partida, destino)
                 && pecaAMover.movimentoValido(partida, destino));
-
     }
 
     public boolean dentroDoTabuleiro(Casa casa) {
@@ -94,20 +98,13 @@ public abstract class Peca {
                 && 0 <= coluna && coluna < Tabuleiro.maxColunas;
     }
 
-    public Cor getJogador() {
-        return jogador;
-    }
+    public Cor getJogador() { return jogador; }
 
-    public String getClassName() {
-        return className;
-    }
+    public String getClassName() { return className; }
 
-    public Tabuleiro getTabuleiro() {
-        return tabuleiro;
-    }
+    public Tabuleiro getTabuleiro() { return tabuleiro; }
 
     public String getSimbolo() { return simbolo; }
 
     public Cor getCor() { return jogador; }
-
 }

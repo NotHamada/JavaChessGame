@@ -1,8 +1,5 @@
 package Main;
 
-import java.util.Scanner;
-import javax.swing.JFrame;
-
 import Controller.Controller;
 import View.InterfaceTabuleiro;
 import Model.Tabuleiro;
@@ -16,6 +13,5 @@ public class Main {
 
         Controller controlador = new Controller(tabuleiro, interfaceTabuleiro);
         controlador.iniciaJogo();
-
     }
 }
