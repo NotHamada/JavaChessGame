@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Tabuleiro {
@@ -168,16 +169,12 @@ public class Tabuleiro {
     }
 
     protected boolean estaAmeacado(Casa casa, Cor jogador) {
-        for (int i = 0; i < maxLinhas; i++) {
-            for (int j = 0; j < maxColunas; j++) {
-                if (pecas[i][j] != null
-                        && pecas[i][j].getJogador() != jogador
-                        && pecas[i][j].validaMovimento(new Casa(i, j), casa)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+
+        return Arrays.stream(pecas)
+                .flatMap(Arrays::stream)
+                .anyMatch(peca -> peca != null
+                        && peca.getJogador() != jogador
+                        && peca.validaMovimento(peca.getCasa(), casa));
     }
 
     private boolean jogadorAtualEstaEmXeque() {
@@ -205,12 +202,13 @@ public class Tabuleiro {
     }
 
     private void verificaXequeMate() {
-        for (int i = 0; i < maxLinhas; i++) {
-            for (int j = 0; j < maxColunas; j++) {
-                if (pecaEhDoJogadorAtual(pecas[i][j]) && jogadorAtualPossuiMovimentoValido(pecas[i][j], new Casa(i, j)))
-                    return;
-            }
-        }
+        boolean naoAcabou = Arrays.stream(pecas)
+                    .flatMap(Arrays::stream)
+                    .anyMatch(peca -> pecaEhDoJogadorAtual(peca) &&
+                            jogadorAtualPossuiMovimentoValido(peca, peca.getCasa()));
+
+        if (naoAcabou) return;
+
         mensagemDeVitoria = (this.turno == Cor.Brancas) ? "Vitoria das Pretas" : "Vitoria das Brancas";
         System.out.println(mensagemDeVitoria);
         System.out.println(this);
