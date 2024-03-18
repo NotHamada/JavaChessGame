@@ -88,12 +88,12 @@ public abstract class Peca {
                 && pecaAMover.movimentoValido(partida, destino));
     }
 
-    public boolean dentroDoTabuleiro(Casa casa) {
+    protected boolean dentroDoTabuleiro(Casa casa) {
         return 0 <= casa.linha && casa.linha < Tabuleiro.maxLinhas
                 && 0 <= casa.coluna && casa.coluna < Tabuleiro.maxColunas;
     }
 
-    public boolean dentroDoTabuleiro(int linha, int coluna) {
+    protected boolean dentroDoTabuleiro(int linha, int coluna) {
         return 0 <= linha && linha < Tabuleiro.maxLinhas
                 && 0 <= coluna && coluna < Tabuleiro.maxColunas;
     }
