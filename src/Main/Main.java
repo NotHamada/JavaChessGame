@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         Tabuleiro tabuleiro = new Tabuleiro();
 
-        InterfaceTabuleiro interfaceTabuleiro = new InterfaceTabuleiro(tabuleiro);
+        InterfaceTabuleiro interfaceTabuleiro = new InterfaceTabuleiro();
 
         Controller controlador = new Controller(tabuleiro, interfaceTabuleiro);
         controlador.iniciaJogo();

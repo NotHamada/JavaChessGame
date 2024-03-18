@@ -5,7 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import Model.*;
+import Model.Casa;
+import Model.Cor;
 
 
 import java.util.List;
@@ -14,10 +15,8 @@ import java.util.regex.Pattern;
 
 
 public class InterfaceTabuleiro extends JFrame implements ActionListener {
-    private final JButton[][] botoesMatriz;
+    private final BotaoCasa[][] botoesMatriz;
     private final Container container;
-
-    private final Tabuleiro tabuleiro;
 
     private boolean casaClicada = false;
 
@@ -28,24 +27,8 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
 
     private int linhaClicada, colunaClicada;
 
-    public void resetaCores(){
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                //botoesMatriz[i][j].setBorderPainted(false);
-                botoesMatriz[i][j].setFocusPainted(false);
-                if(i%2 == j%2)
-                    botoesMatriz[i][j].setBackground(Color.WHITE);
-                else
-                    botoesMatriz[i][j].setBackground(Color.decode("#759655"));
-            }
-        }
-    }
-
-    public InterfaceTabuleiro(Tabuleiro tabuleiro){
+    public InterfaceTabuleiro(){
         super("vem de xadra vem");
-
-        this.tabuleiro = tabuleiro;
-
 
 
         getImgsPath();
@@ -57,13 +40,13 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(480, 480);
         setVisible(true);
-        botoesMatriz = new JButton[8][8];
+        botoesMatriz = new BotaoCasa[8][8];
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 final int linha = i;
                 final int coluna = j;
-                botoesMatriz[i][j] = new JButton();
+                botoesMatriz[i][j] = new BotaoCasa(escolherCorBotao(i, j));
                 botoesMatriz[i][j].addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
@@ -77,7 +60,6 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
             }
 
         }
-        resetaCores();
 
     }
 
@@ -116,10 +98,22 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
         return new Casa(linhaClicada, colunaClicada);
     }
 
-    public void pintaMovimentosPossiveis(List<Casa> movimentosPossives){
+    private Cor escolherCorBotao(final int i, final int j) {
+        if (i%2 == j%2) {
+            return Cor.Brancas;
+        }
+        return Cor.Pretas;
+    }
+
+    public void marcarMovimentosPossiveis(List<Casa> movimentosPossives){
         for(Casa casa : movimentosPossives){
-            botoesMatriz[casa.linha][casa.coluna].setBackground(Color.decode("#87b5ff"));
-            botoesMatriz[casa.linha][casa.coluna].setBorderPainted(true);
+            botoesMatriz[casa.linha][casa.coluna].marcarMovimentoPossivel();
+        }
+    }
+
+    public void removerMarcacoesMovimentosPossiveis(List<Casa> movimentosPossives){
+        for(Casa casa : movimentosPossives){
+            botoesMatriz[casa.linha][casa.coluna].removerMarcacaoMovimentoPossivel();
         }
     }
 
@@ -132,11 +126,10 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
 
 
 
-    public String caminhoImagemPeca(Peca p){
-        if(p == null) return null;
-        switch(p.getCor()) {
+    public String caminhoImagemPeca(String simboloPeca, Cor cor){
+        switch(cor) {
             case Brancas:
-                switch (p.getSimbolo()) {
+                switch (simboloPeca) {
                     case "P" -> {
                         return IMGS_PATH + "Images" + separator + "Chess_plt60.png";
                     }
@@ -157,7 +150,7 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
                     }
                 }
             case Pretas:
-                switch (p.getSimbolo()) {
+                switch (simboloPeca) {
                     case "P" -> {
                         return IMGS_PATH + "Images" + separator + "Chess_pdt60.png";
                     }
@@ -182,19 +175,14 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
         }
         return null;
     }
-    public void updateTabuleiro()
-    {
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
-                String caminhoImagem = caminhoImagemPeca(tabuleiro.getPeca(i, j));
 
-                botoesMatriz[i][j].setIcon(new ImageIcon(caminhoImagem));
 
-            }
+    public void updateCasa(final int i, final int j, final String simboloPeca, final Cor corPeca) {
+        String caminhoImagem = null;
+        if (simboloPeca != null) {
+            caminhoImagem = caminhoImagemPeca(simboloPeca, corPeca);
         }
-    }
 
-    public Peca getPecaPromovida(Cor turno) {
-        return new Dama(turno, tabuleiro);
+        botoesMatriz[i][j].setIcon(new ImageIcon(caminhoImagem));
     }
 }

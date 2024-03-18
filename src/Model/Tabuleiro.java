@@ -13,6 +13,7 @@ public class Tabuleiro {
     protected Cor turno;
     protected String mensagemDeVitoria;
     private boolean fazPromocao;
+    private boolean enPassant;
 
     public Cor getTurno() {
         return turno;
@@ -69,6 +70,7 @@ public class Tabuleiro {
 
                 pecaCapturada = capturaPeca(casaPeaoCapturado);
                 movePeca(partida, destino);
+                enPassant = true;
             }
             case PromocaoPeao -> {
                 fazPromocao = true;
@@ -319,28 +321,17 @@ public class Tabuleiro {
         addPeca(new Peao(Cor.Pretas, this), 1, 7);
     }
 
-    public Peca[][] getPecas() {
-        return pecas;
-    }
-
-    public Peca getPeca(int linha, int coluna) {
-        return pecas[linha][coluna];
-    }
-
-    public Peca getPeca(Casa casa) {
-        return pecas[casa.linha][casa.coluna];
-    }
-
+    public Peca[][] getPecas() { return pecas; }
+    public Peca getPeca(int linha, int coluna) { return pecas[linha][coluna]; }
+    public Peca getPeca(Casa casa) { return pecas[casa.linha][casa.coluna];}
     public Peca getPeca(String str) {
         Casa casa = Casa.strToCasa(str);
         return pecas[casa.linha][casa.coluna];
     }
 
-    public void setFazPromocao(boolean b) {
-        fazPromocao = b;
-    }
-
-    public boolean getFazPromocao() {
-        return fazPromocao;
-    }
+    public void setFazPromocao(boolean b) { fazPromocao = b; }
+    public boolean getFazPromocao() { return fazPromocao; }
+    
+    public void setEnPassant(boolean b) { enPassant = b;}
+    public boolean getEnPassant() { return enPassant;}
 }
