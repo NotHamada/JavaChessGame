@@ -107,4 +107,13 @@ public abstract class Peca {
     public String getSimbolo() { return simbolo; }
 
     public Cor getCor() { return jogador; }
+
+    public Casa getCasa() {
+        for(int i = 0; i < Tabuleiro.maxLinhas; i++){
+            for(int j = 0; j < Tabuleiro.maxColunas; j++){
+                if(tabuleiro.getPecas()[i][j] == this) return new Casa(i, j);
+            }
+        }
+        return null;
+    }
 }
