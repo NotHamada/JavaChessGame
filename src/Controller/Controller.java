@@ -35,9 +35,8 @@ public class Controller {
                     casaInicio = casaFim;
             }
             try {
-                tabuleiro.fazMovimento(casaInicio, casaFim);
+                tabuleiro.fazJogada(casaInicio, casaFim);
                 if(tabuleiro.getFazPromocao()){
-                    // Melhorar
                     Peca pecaPromovida = new Dama(tabuleiro.getTurno() == Cor.Brancas ? Cor.Pretas : Cor.Brancas, tabuleiro);
                     tabuleiro.addPeca(pecaPromovida, casaFim.linha, casaFim.coluna);
                     tabuleiro.setFazPromocao(false);
@@ -50,7 +49,6 @@ public class Controller {
     }
 
     private void updateMovimentoInterface(Casa casaInicio, Casa casaFim) {
-        // add enpassant case
         if (tabuleiro.getEnPassant()) {
             updateCasaInterface(casaFim.linha - 1, casaFim.coluna);
             updateCasaInterface(casaFim.linha + 1, casaFim.coluna);

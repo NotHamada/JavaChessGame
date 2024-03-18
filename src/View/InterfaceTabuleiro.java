@@ -121,7 +121,7 @@ public class InterfaceTabuleiro extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        container.validate(); // rearranja os elementos do container
+        container.validate();
     }
 
 

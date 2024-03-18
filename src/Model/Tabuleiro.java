@@ -15,17 +15,9 @@ public class Tabuleiro {
     private boolean fazPromocao;
     private boolean enPassant;
 
-    public Cor getTurno() {
-        return turno;
-    }
-
     public Tabuleiro() {
         pecas = new Peca[maxLinhas][maxColunas];
         resetaVariaveis();
-    }
-
-    public boolean jogoAcabou() {
-        return mensagemDeVitoria != null;
     }
 
     private void resetaVariaveis() {
@@ -42,7 +34,7 @@ public class Tabuleiro {
         pecas[linha][coluna] = peca;
     }
 
-    public void fazMovimento(Casa partida, Casa destino) throws MovementNotAllowedException {
+    public void fazJogada(Casa partida, Casa destino) throws MovementNotAllowedException {
         Peca pecaAMover = pecas[partida.linha][partida.coluna];
         Peca pecaCapturada = null;
 
@@ -91,6 +83,28 @@ public class Tabuleiro {
         verificaXequeMate();
     }
 
+    public List<Casa> getMovimentosPossiveis(Casa casaDaPeca) {
+
+        List<Casa> casasPossiveis = new ArrayList<>();
+        Peca peca = pecas[casaDaPeca.linha][casaDaPeca.coluna];
+
+        if (peca == null || peca.getCor() != turno)
+            return casasPossiveis;
+
+        boolean estaEmXeque = jogadorAtualEstaEmXeque();
+        for (int i = 0; i < maxLinhas; i++) {
+            for (int j = 0; j < maxColunas; j++) {
+                Casa casa = new Casa(i, j);
+                if (!peca.validaMovimento(casaDaPeca, casa))
+                    continue;
+                
+                if (!estaEmXeque || (estaEmXeque && movimentoTiraReideXeque(casaDaPeca, casa)))
+                    casasPossiveis.add(new Casa(i, j));
+            }
+        }
+        return casasPossiveis;
+    }
+
     private Peca capturaPeca(Casa casaCapturada) {
         Peca p = pecas[casaCapturada.linha][casaCapturada.coluna];
         pecas[casaCapturada.linha][casaCapturada.coluna] = null;
@@ -134,7 +148,7 @@ public class Tabuleiro {
     }
 
     // necessita que o rei do jogador atual está em xeque e o movimento é valido.
-    public boolean movimentoTiraReideXeque(Casa casaPartida, Casa casaDestino) {
+    private boolean movimentoTiraReideXeque(Casa casaPartida, Casa casaDestino) {
 
         Peca pecaAMover = pecas[casaPartida.linha][casaPartida.coluna];
 
@@ -153,26 +167,6 @@ public class Tabuleiro {
         }
     }
 
-    @Override
-    public String toString() {
-
-        StringBuilder output = new StringBuilder();
-        for (int i = maxLinhas - 1; i >= 0; i--) {
-
-            output.append((char) ('1' + i));
-
-            for (int j = 0; j < maxColunas; j++) {
-                if (pecas[i][j] == null)
-                    output.append("| ");
-                else
-                    output.append("|").append(pecas[i][j].toString());
-            }
-            output.append("|\n");
-        }
-        output.append(" |A|B|C|D|E|F|G|H|\n");
-        return output.toString();
-    }
-
     protected boolean estaAmeacado(Casa casa, Cor jogador) {
         for (int i = 0; i < maxLinhas; i++) {
             for (int j = 0; j < maxColunas; j++) {
@@ -186,7 +180,7 @@ public class Tabuleiro {
         return false;
     }
 
-    public boolean jogadorAtualEstaEmXeque() {
+    private boolean jogadorAtualEstaEmXeque() {
         try {
             Casa casaDoRei = getCasaDoReiDoJogadorAtual();
             return estaAmeacado(casaDoRei, this.turno);
@@ -246,29 +240,7 @@ public class Tabuleiro {
         return false;
     }
 
-    public List<Casa> getMovimentosPossiveis(Casa casaDaPeca) {
-
-        List<Casa> casasPossiveis = new ArrayList<>();
-        Peca peca = pecas[casaDaPeca.linha][casaDaPeca.coluna];
-
-        if (peca == null || peca.getCor() != turno)
-            return casasPossiveis;
-
-        boolean estaEmXeque = jogadorAtualEstaEmXeque();
-        for (int i = 0; i < maxLinhas; i++) {
-            for (int j = 0; j < maxColunas; j++) {
-                Casa casa = new Casa(i, j);
-                if (!peca.validaMovimento(casaDaPeca, casa))
-                    continue;
-                
-                if (!estaEmXeque || (estaEmXeque && movimentoTiraReideXeque(casaDaPeca, casa)))
-                    casasPossiveis.add(new Casa(i, j));
-            }
-        }
-        return casasPossiveis;
-    }
-
-    public void voltarMovimento(Casa casaPartida, Casa casaDestino, Peca pecaAMover, Peca pecaCapturada) {
+    private void voltarMovimento(Casa casaPartida, Casa casaDestino, Peca pecaAMover, Peca pecaCapturada) {
         pecas[casaDestino.linha][casaDestino.coluna].numMovimentos--;
 
         pecas[casaDestino.linha][casaDestino.coluna] = pecaCapturada;
@@ -321,6 +293,26 @@ public class Tabuleiro {
         addPeca(new Peao(Cor.Pretas, this), 1, 7);
     }
 
+    @Override
+    public String toString() {
+
+        StringBuilder output = new StringBuilder();
+        for (int i = maxLinhas - 1; i >= 0; i--) {
+
+            output.append((char) ('1' + i));
+
+            for (int j = 0; j < maxColunas; j++) {
+                if (pecas[i][j] == null)
+                    output.append("| ");
+                else
+                    output.append("|").append(pecas[i][j].toString());
+            }
+            output.append("|\n");
+        }
+        output.append(" |A|B|C|D|E|F|G|H|\n");
+        return output.toString();
+    }
+
     public Peca[][] getPecas() { return pecas; }
     public Peca getPeca(int linha, int coluna) { return pecas[linha][coluna]; }
     public Peca getPeca(Casa casa) { return pecas[casa.linha][casa.coluna];}
@@ -329,9 +321,13 @@ public class Tabuleiro {
         return pecas[casa.linha][casa.coluna];
     }
 
-    public void setFazPromocao(boolean b) { fazPromocao = b; }
     public boolean getFazPromocao() { return fazPromocao; }
+    public void setFazPromocao(boolean b) { fazPromocao = b; }
     
-    public void setEnPassant(boolean b) { enPassant = b;}
     public boolean getEnPassant() { return enPassant;}
+    public void setEnPassant(boolean b) { enPassant = b;}
+
+    public Cor getTurno() { return turno; }
+
+    public boolean jogoAcabou() { return mensagemDeVitoria != null; }
 }
